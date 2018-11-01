@@ -52,15 +52,19 @@ public class Runner {
             }
             if (input.equals("n")) {
                 field[xLoc][yLoc-1].enterRoom(you);
+                field[you.returnLocation()[0]][you.returnLocation()[1]].leaveRoom();
             }
             if (input.equals("e")) {
                 field[xLoc+1][yLoc].enterRoom(you);
+                field[you.returnLocation()[0]][you.returnLocation()[1]].leaveRoom();
             }
             if (input.equals("s")) {
                 field[xLoc][yLoc+1].enterRoom(you);
+                field[you.returnLocation()[0]][you.returnLocation()[1]].leaveRoom();
             }
             if (input.equals("w")) {
                 field[xLoc-1][yLoc].enterRoom(you);
+                field[you.returnLocation()[0]][you.returnLocation()[1]].leaveRoom();
             }
 
         }

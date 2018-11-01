@@ -8,10 +8,6 @@
 
 public class StartingRoom extends Room {
 
-    public StartingRoom(int x, int y) {
-        super(x, y);
-    }
-
     public String[] returnMapPortion() {
         String[] map = {
                 "   ",
@@ -20,6 +16,29 @@ public class StartingRoom extends Room {
         };
         return map;
     }
+
+    public StartingRoom(int x, int y) {
+        super(x, y);
+    }
+
+    public void enterRoom(Profile z) {
+        String[] newMapIcon = {
+                "OOO",
+                "OSO",
+                "OOO"
+        };
+        map = newMapIcon;
+    }
+
+    public void leaveRoom() {
+        String[] oldMapIcon = {
+                "   ",
+                " S ",
+                "   "
+        };
+        map = oldMapIcon;
+    }
+
     public boolean deadEnd() {
         return false;
     }

@@ -22,6 +22,14 @@ public class Room {
         occupant = z;
         z.setLocation(xLoc, yLoc);
     }
+    public void leaveRoom() {
+        String[] oldMapIcon = {
+                "   ",
+                "   ",
+                "   "
+        };
+        map = oldMapIcon;
+    }
 
     public String[] returnMapPortion() {
         return map;

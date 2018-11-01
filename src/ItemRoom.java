@@ -21,6 +21,24 @@ public class ItemRoom extends Room {
         return map;
     }
 
+    public void enterRoom(Profile z) {
+        String[] newMapIcon = {
+                "OOO",
+                "OTO",
+                "OOO"
+        };
+        map = newMapIcon;
+    }
+
+    public void leaveRoom() {
+        String[] oldMapIcon = {
+                "   ",
+                " T ",
+                "   "
+        };
+        map = oldMapIcon;
+    }
+
     public boolean deadEnd() {
         return true;
     }

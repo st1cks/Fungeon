@@ -22,6 +22,24 @@ public class EmptyRoom extends Room {
         return map;
     }
 
+    public void enterRoom(Profile z) {
+        String[] newMapIcon = {
+                "OOO",
+                "O O",
+                "OOO"
+        };
+        map = newMapIcon;
+    }
+
+    public void leaveRoom() {
+        String[] oldMapIcon = {
+                "   ",
+                "   ",
+                "   "
+        };
+        map = oldMapIcon;
+    }
+
     public boolean deadEnd() {
         return false;
     }

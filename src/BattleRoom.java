@@ -18,6 +18,24 @@ public class BattleRoom extends Room {
         super(x, y);
     }
 
+    public void enterRoom(Profile z) {
+        String[] newMapIcon = {
+                "OOO",
+                "OBO",
+                "OOO"
+        };
+        map = newMapIcon;
+    }
+
+    public void leaveRoom() {
+        String[] oldMapIcon = {
+                "   ",
+                " B ",
+                "   "
+        };
+        map = oldMapIcon;
+    }
+
     public String[] returnMapPortion() {
         return map;
     }
