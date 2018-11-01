@@ -51,16 +51,16 @@ public class Runner {
                 printMap(field);
             }
             if (input.equals("n")) {
-                you.move(0, -1);
+                field[xLoc][yLoc-1].enterRoom(you);
             }
             if (input.equals("e")) {
-                you.move(1, 0);
+                field[xLoc+1][yLoc].enterRoom(you);
             }
             if (input.equals("s")) {
-                you.move(0, 1);
+                field[xLoc][yLoc+1].enterRoom(you);
             }
             if (input.equals("w")) {
-                you.move(-1, 0);
+                field[xLoc-1][yLoc].enterRoom(you);
             }
 
         }
