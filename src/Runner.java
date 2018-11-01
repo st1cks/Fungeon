@@ -61,13 +61,13 @@ public class Runner {
                 // Fills the whole dungeon with walls, to create a clean slate to work on.
             }
         }
-        dungeon[length/2-1][width/2-1] = new StartingRoom(length/2-1, width/2-1);
+        dungeon[length/2][width/2] = new StartingRoom(length/2, width/2);
         // Creates the start room in the absolute middle of the dungeon.
 
         roomIQ = dungeon[5][4];
         // By setting "roomIQ" to a space in the dungeon, I'm essentially "selecting" this piece of the dungeon to work
         // on.
-        for (int i = 0; i < length / 2 - 1; i ++) {
+        for (int i = 0; i < length / 2; i ++) {
             dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
             Room[] nesw = {
                     dungeon[roomIQ.xLoc][roomIQ.yLoc-1], // 1 space north of the room "In Question"
@@ -96,7 +96,7 @@ public class Runner {
         }
         // The other three copies of the code below are the exact same thing, in different directions.
         roomIQ = dungeon[6][5]; // Generate to the east.
-        for (int i = 0; i < width / 2 - 1; i ++) {
+        for (int i = 0; i < width / 2; i ++) {
             dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
             Room[] nesw = {
                     dungeon[roomIQ.xLoc][roomIQ.yLoc-1], // 1 space north of the room "In Question"
@@ -119,7 +119,7 @@ public class Runner {
         }
 
         roomIQ = dungeon[5][6]; // South
-        for (int i = 0; i < length / 2 - 1; i ++) {
+        for (int i = 0; i < length / 2; i ++) {
             dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
             Room[] nesw = {
                     dungeon[roomIQ.xLoc][roomIQ.yLoc-1], // 1 space north of the room "In Question"
@@ -142,7 +142,7 @@ public class Runner {
         }
 
         roomIQ = dungeon[4][5]; // West
-        for (int i = 0; i < width / 2 - 1; i ++) {
+        for (int i = 0; i < width / 2; i ++) {
             dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
             Room[] nesw = {
                     dungeon[roomIQ.xLoc][roomIQ.yLoc-1], // 1 space north of the room "In Question"
@@ -188,15 +188,15 @@ public class Runner {
     }
 
     public static void printMap(Room[][] map) {
-        String x = " ";
+        String x = "  ";
         for (int i = 0; i < map.length; i ++) {
-            x += "  " + i;
+            x += i + "   ";
         }
         System.out.println(x);
         
         String y = "╔";
         for (int i = 0; i < map.length; i ++) {
-            if (y != map.length-1) {y += "═══╦";}
+            if (i != map.length-1) {y += "═══╦";}
             else {y += "═══╗";}
         }
         System.out.println(y);
@@ -204,7 +204,7 @@ public class Runner {
         for (int i = 0; i < map.length; i ++) {
             for (int j = 0; j < 3; j ++) {
                 String z = "";
-                for (int z = 0; k < map[i].length; k ++) {
+                for (int k = 0; k < map[i].length; k ++) {
                     z += "║" + map[i][k].returnMapPortion()[j];
                 }
                 z += "║";
@@ -226,16 +226,16 @@ public class Runner {
                 System.out.println(a);
             }
         }
-        String b = "╚"; // HERE
-        for (int i = 0; i < map[0].length; i ++ {
-                    if (j != map.length - 1) {
-                        a += "═══╬";
+        String b = "╚";
+        for (int i = 0; i < map[0].length; i ++) {
+                    if (i != map.length - 1) {
+                        b += "═══╩";
                     }
                     else {
-                        a += "═══╣";
+                        b += "═══╝";
                     }
                 }
-        System.out.println("╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝");
+        System.out.println(b);
     }
 
 }
