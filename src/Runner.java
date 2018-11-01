@@ -48,6 +48,9 @@ public class Runner {
             randomAdjacentRoom = generateRandomInteger(0,3);
             while (nesw[randomAdjacentRoom].isAnActualRoom()) {
                 randomAdjacentRoom = generateRandomInteger(0,3);
+                if (nesw[0].isAnActualRoom() && nesw[1].isAnActualRoom() && nesw[2].isAnActualRoom() && nesw[3].isAnActualRoom()) {
+                    break;
+                }
             }
             roomIQ = nesw[randomAdjacentRoom];
             dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
@@ -67,6 +70,9 @@ public class Runner {
             randomAdjacentRoom = generateRandomInteger(0,3);
             while (nesw[randomAdjacentRoom].isAnActualRoom()) {
                 randomAdjacentRoom = generateRandomInteger(0,3);
+                if (nesw[0].isAnActualRoom() && nesw[1].isAnActualRoom() && nesw[2].isAnActualRoom() && nesw[3].isAnActualRoom()) {
+                    break;
+                }
             }
             roomIQ = nesw[randomAdjacentRoom];
             dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
@@ -86,6 +92,9 @@ public class Runner {
             randomAdjacentRoom = generateRandomInteger(0,3);
             while (nesw[randomAdjacentRoom].isAnActualRoom()) {
                 randomAdjacentRoom = generateRandomInteger(0,3);
+                if (nesw[0].isAnActualRoom() && nesw[1].isAnActualRoom() && nesw[2].isAnActualRoom() && nesw[3].isAnActualRoom()) {
+                    break;
+                }
             }
             roomIQ = nesw[randomAdjacentRoom];
             dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
@@ -105,6 +114,9 @@ public class Runner {
             randomAdjacentRoom = generateRandomInteger(0,3);
             while (nesw[randomAdjacentRoom].isAnActualRoom()) {
                 randomAdjacentRoom = generateRandomInteger(0,3);
+                if (nesw[0].isAnActualRoom() && nesw[1].isAnActualRoom() && nesw[2].isAnActualRoom() && nesw[3].isAnActualRoom()) {
+                    break;
+                }
             }
             roomIQ = nesw[randomAdjacentRoom];
             dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
@@ -147,7 +159,7 @@ public class Runner {
                 x += "║";
                 System.out.println(x);
             }
-            if (i != 2) {
+            if (i != map.length - 1) {
                 System.out.println("╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣");
             }
         }
