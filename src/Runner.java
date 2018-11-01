@@ -36,6 +36,14 @@ public class Runner {
 
 
         while (gameRunning) {
+            int xLoc = you.returnLocation()[0];
+            int yLoc = you.returnLocation()[1];
+            boolean n, e, s, w;
+            n = field[xLoc][yLoc-1].isAnActualRoom();
+            e = field[xLoc+1][yLoc].isAnActualRoom();
+            s = field[xLoc][yLoc+1].isAnActualRoom();
+            w = field[xLoc-1][yLoc].isAnActualRoom();
+
 
         }
 
@@ -171,20 +179,16 @@ public class Runner {
     }
 
     public static Room pickWhichRoomToPutIn(int x, int y) {
-        int decider = generateRandomInteger(0,3);
-        if (decider == 3) {
+        int decider = generateRandomInteger(0,5);
+        if (decider == 5) {
             return new ItemRoom(x, y);
         }
-        else if (decider == 2) {
+        else if (decider < 2) {
             return new EmptyRoom(x, y);
         }
         else {
             return new BattleRoom(x, y);
         }
-    }
-
-    public static void printMainScreen() {
-
     }
 
     public static void printMap(Room[][] map) {
@@ -239,7 +243,50 @@ public class Runner {
     }
 
     public static void printGUI(boolean n, boolean e, boolean s, boolean w) {
-        String[] GUI
+        String[] GUI = {
+                "       NORTH       ||", // 21 characters long
+                "         ^         ||",
+                "  WEST  < >  EAST  ||",
+                "         V         ||",
+                "       SOUTH       ||",
+                "                   ||"
+        };
+        String[] overworld = {
+                "  Your options:",
+                "  (N)orth",
+                "  (E)ast",
+                "  (S)outh",
+                "  (W)est",
+                "  You can also check the (M)ap, or your S(T)ats."
+        };
+        if (!n) {
+            GUI[0] = "                   ||";
+            GUI[1] = "                   ||";
+            overworld[1] = "";
+        }
+        if (!w && !e) {
+            GUI[2] = "                   ||";
+            overworld[2] = "";
+            overworld[3] = "";
+        }
+        else if (!w) {
+            GUI[2] = "         >   EAST  ||";
+            overworld[3] = "";
+        }
+        else if (!e) {
+            GUI[2] = "  WEST  <          ||";
+            overworld[2] = "";
+        }
+        if (!s) {
+            GUI[3] = "                   ||";
+            GUI[4] = "                   ||";
+            overworld[4] = "";
+        }
+
+        for (int i = 0; i < 6; i ++) {
+            System.out.println(GUI[i] + overworld[i]);
+        }
+
     }
 
 }
