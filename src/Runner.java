@@ -188,20 +188,53 @@ public class Runner {
     }
 
     public static void printMap(Room[][] map) {
-        System.out.println("╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗"); // FIRST ROW - BORDER
+        String x = " ";
+        for (int i = 0; i < map.length; i ++) {
+            x += "  " + i;
+        }
+        System.out.println(x);
+        
+        String y = "╔";
+        for (int i = 0; i < map.length; i ++) {
+            if (y != map.length-1) {y += "═══╦";}
+            else {y += "═══╗";}
+        }
+        System.out.println(y);
+        
         for (int i = 0; i < map.length; i ++) {
             for (int j = 0; j < 3; j ++) {
-                String x = "";
-                for (int k = 0; k < map[i].length; k ++) {
-                    x += "║" + map[i][k].returnMapPortion()[j];
+                String z = "";
+                for (int z = 0; k < map[i].length; k ++) {
+                    z += "║" + map[i][k].returnMapPortion()[j];
                 }
-                x += "║";
-                System.out.println(x);
+                z += "║";
+                if (j == 1) {
+                    z += "  " + i;
+                }
+                System.out.println(z);
             }
             if (i != map.length - 1) {
-                System.out.println("╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣");
+                String a = "╠";
+                for (int j = 0; j < map.length; j ++) {
+                    if (j != map.length - 1) {
+                        a += "═══╬";
+                    }
+                    else {
+                        a += "═══╣";
+                    }
+                }
+                System.out.println(a);
             }
         }
+        String b = "╚"; // HERE
+        for (int i = 0; i < map[0].length; i ++ {
+                    if (j != map.length - 1) {
+                        a += "═══╬";
+                    }
+                    else {
+                        a += "═══╣";
+                    }
+                }
         System.out.println("╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝");
     }
 
