@@ -19,6 +19,8 @@ public class BattleRoom extends Room {
     }
 
     public void enterRoom(Profile z) {
+        occupant = z;
+        z.setLocation(xLoc, yLoc);
         String[] newMapIcon = {
                 "OOO",
                 "OBO",

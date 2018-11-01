@@ -22,6 +22,8 @@ public class StartingRoom extends Room {
     }
 
     public void enterRoom(Profile z) {
+        occupant = z;
+        z.setLocation(xLoc, yLoc);
         String[] newMapIcon = {
                 "OOO",
                 "OSO",
