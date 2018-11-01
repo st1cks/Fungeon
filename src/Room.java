@@ -8,10 +8,15 @@
 
 public class Room {
     Profile occupant; int xLoc; int yLoc;
-    String[] map = {
+    private String[] map = {
             "///",
             "///",
             "///"
+    };
+    private String[] oldMapIcon = {
+            "   ",
+            "   ",
+            "   "
     };
 
     public Room(int x, int y) {
@@ -23,11 +28,6 @@ public class Room {
         z.setLocation(xLoc, yLoc);
     }
     public void leaveRoom() {
-        String[] oldMapIcon = {
-                "   ",
-                "   ",
-                "   "
-        };
         map = oldMapIcon;
     }
 

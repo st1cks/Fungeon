@@ -8,10 +8,15 @@
 
 public class StartingRoom extends Room {
 
-    String[] map = {
+    private String[] map = {
             "   ",
             " S ",
             "   "
+    };
+    private String[] newMapIcon = {
+            "OOO",
+            "OSO",
+            "OOO"
     };
 
     public String[] returnMapPortion() {
@@ -25,11 +30,6 @@ public class StartingRoom extends Room {
     public void enterRoom(Profile z) {
         occupant = z;
         z.setLocation(xLoc, yLoc);
-        String[] newMapIcon = {
-                "OOO",
-                "OSO",
-                "OOO"
-        };
         map = newMapIcon;
     }
 

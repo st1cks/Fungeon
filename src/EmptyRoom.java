@@ -8,10 +8,15 @@
 
 public class EmptyRoom extends Room {
 
-    String[] map = {
+    private String[] map = {
             "   ",
             "   ",
             "   "
+    };
+    private String[] newMapIcon = {
+            "OOO",
+            "O O",
+            "OOO"
     };
 
     public EmptyRoom(int x, int y) {
@@ -25,11 +30,6 @@ public class EmptyRoom extends Room {
     public void enterRoom(Profile z) {
         occupant = z;
         z.setLocation(xLoc, yLoc);
-        String[] newMapIcon = {
-                "OOO",
-                "O O",
-                "OOO"
-        };
         map = newMapIcon;
     }
 
