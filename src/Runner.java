@@ -50,7 +50,7 @@ public class Runner {
                 randomAdjacentRoom = generateRandomInteger(0,3);
             }
             roomIQ = nesw[randomAdjacentRoom];
-            roomIQ = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
+            dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
             if (roomIQ.deadEnd()) {
                 break;
             }
@@ -69,7 +69,7 @@ public class Runner {
                 randomAdjacentRoom = generateRandomInteger(0,3);
             }
             roomIQ = nesw[randomAdjacentRoom];
-            roomIQ = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
+            dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
             if (roomIQ.deadEnd()) {
                 break;
             }
@@ -88,7 +88,7 @@ public class Runner {
                 randomAdjacentRoom = generateRandomInteger(0,3);
             }
             roomIQ = nesw[randomAdjacentRoom];
-            roomIQ = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
+            dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
             if (roomIQ.deadEnd()) {
                 break;
             }
@@ -107,7 +107,7 @@ public class Runner {
                 randomAdjacentRoom = generateRandomInteger(0,3);
             }
             roomIQ = nesw[randomAdjacentRoom];
-            roomIQ = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
+            dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
             if (roomIQ.deadEnd()) {
                 break;
             }
@@ -147,7 +147,9 @@ public class Runner {
                 x += "║";
                 System.out.println(x);
             }
-            System.out.println("╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣")
+            if (i != 2) {
+                System.out.println("╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣");
+            }
         }
         System.out.println("╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝");
     }
