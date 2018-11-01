@@ -44,6 +44,9 @@ public class Runner {
             s = field[xLoc][yLoc+1].isAnActualRoom();
             w = field[xLoc-1][yLoc].isAnActualRoom();
 
+            printGUI(n, e, s, w);
+            in = new Scanner(System.in);
+            input = in.nextLine();
 
         }
 
