@@ -46,7 +46,7 @@ public class Runner {
                     dungeon[roomIQ.xLoc-1][roomIQ.yLoc] // W
             };
             randomAdjacentRoom = generateRandomInteger(0,3);
-            while (nesw[randomAdjacentRoom] != null) {
+            while (nesw[randomAdjacentRoom].isAnActualRoom()) {
                 randomAdjacentRoom = generateRandomInteger(0,3);
             }
             roomIQ = nesw[randomAdjacentRoom];
@@ -65,7 +65,7 @@ public class Runner {
                     dungeon[roomIQ.xLoc-1][roomIQ.yLoc] // W
             };
             randomAdjacentRoom = generateRandomInteger(0,3);
-            while (nesw[randomAdjacentRoom] != null) {
+            while (nesw[randomAdjacentRoom].isAnActualRoom()) {
                 randomAdjacentRoom = generateRandomInteger(0,3);
             }
             roomIQ = nesw[randomAdjacentRoom];
@@ -84,7 +84,7 @@ public class Runner {
                     dungeon[roomIQ.xLoc-1][roomIQ.yLoc] // W
             };
             randomAdjacentRoom = generateRandomInteger(0,3);
-            while (nesw[randomAdjacentRoom] != null) {
+            while (nesw[randomAdjacentRoom].isAnActualRoom()) {
                 randomAdjacentRoom = generateRandomInteger(0,3);
             }
             roomIQ = nesw[randomAdjacentRoom];
@@ -103,7 +103,7 @@ public class Runner {
                     dungeon[roomIQ.xLoc-1][roomIQ.yLoc] // W
             };
             randomAdjacentRoom = generateRandomInteger(0,3);
-            while (nesw[randomAdjacentRoom] != null) {
+            while (nesw[randomAdjacentRoom].isAnActualRoom()) {
                 randomAdjacentRoom = generateRandomInteger(0,3);
             }
             roomIQ = nesw[randomAdjacentRoom];
@@ -142,11 +142,12 @@ public class Runner {
             for (int j = 0; j < 3; j ++) {
                 String x = "";
                 for (int k = 0; k < map[i].length; k ++) {
-                    x += "║" + map[i][j].returnMapPortion()[k];
+                    x += "║" + map[i][k].returnMapPortion()[j];
                 }
                 x += "║";
                 System.out.println(x);
             }
+            System.out.println("╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣")
         }
         System.out.println("╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝");
     }
