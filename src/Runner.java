@@ -39,6 +39,7 @@ public class Runner {
 
         roomIQ = dungeon[5][4]; // Generate north. North generation starts here.
         for (int i = 0; i < 3; i ++) {
+            dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
             Room[] nesw = {
                     dungeon[roomIQ.xLoc][roomIQ.yLoc-1], // 1 space north of the room "In Question"
                     dungeon[roomIQ.xLoc+1][roomIQ.yLoc], // 1 space east of the room "In Question"
@@ -61,6 +62,7 @@ public class Runner {
 
         roomIQ = dungeon[6][5]; // Generate to the east.
         for (int i = 0; i < 3; i ++) {
+            dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
             Room[] nesw = {
                     dungeon[roomIQ.xLoc][roomIQ.yLoc-1], // 1 space north of the room "In Question"
                     dungeon[roomIQ.xLoc+1][roomIQ.yLoc], // 1 space east of the room "In Question"
@@ -83,6 +85,7 @@ public class Runner {
 
         roomIQ = dungeon[5][6]; // South
         for (int i = 0; i < 3; i ++) {
+            dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
             Room[] nesw = {
                     dungeon[roomIQ.xLoc][roomIQ.yLoc-1], // 1 space north of the room "In Question"
                     dungeon[roomIQ.xLoc+1][roomIQ.yLoc], // 1 space east of the room "In Question"
@@ -105,6 +108,7 @@ public class Runner {
 
         roomIQ = dungeon[4][5]; // West
         for (int i = 0; i < 3; i ++) {
+            dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
             Room[] nesw = {
                     dungeon[roomIQ.xLoc][roomIQ.yLoc-1], // 1 space north of the room "In Question"
                     dungeon[roomIQ.xLoc+1][roomIQ.yLoc], // 1 space east of the room "In Question"
