@@ -7,7 +7,7 @@ public class EmptyRoom extends Room {
     public String[] returnMapPortion() {
         String[] map = {
                 "   ",
-                " N ",
+                "   ",
                 "   "
         };
         return map;
