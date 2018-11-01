@@ -8,12 +8,13 @@
 
 public class StartingRoom extends Room {
 
+    String[] map = {
+            "   ",
+            " S ",
+            "   "
+    };
+
     public String[] returnMapPortion() {
-        String[] map = {
-                "   ",
-                " S ",
-                "   "
-        };
         return map;
     }
 
