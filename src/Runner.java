@@ -97,7 +97,7 @@ public class Runner {
         roomIQ = dungeon[5][4];
         // By setting "roomIQ" to a space in the dungeon, I'm essentially "selecting" this piece of the dungeon to work
         // on.
-        for (int i = 0; i < length / 2; i ++) {
+        for (int i = 0; i < length / 2 - 1; i ++) {
             dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
             Room[] nesw = {
                     dungeon[roomIQ.xLoc][roomIQ.yLoc-1], // 1 space north of the room "In Question"
@@ -126,7 +126,7 @@ public class Runner {
         }
         // The other three copies of the code below are the exact same thing, in different directions.
         roomIQ = dungeon[6][5]; // Generate to the east.
-        for (int i = 0; i < width / 2; i ++) {
+        for (int i = 0; i < width / 2 - 1; i ++) {
             dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
             Room[] nesw = {
                     dungeon[roomIQ.xLoc][roomIQ.yLoc-1], // 1 space north of the room "In Question"
@@ -149,7 +149,7 @@ public class Runner {
         }
 
         roomIQ = dungeon[5][6]; // South
-        for (int i = 0; i < length / 2; i ++) {
+        for (int i = 0; i < length / 2 - 1; i ++) {
             dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
             Room[] nesw = {
                     dungeon[roomIQ.xLoc][roomIQ.yLoc-1], // 1 space north of the room "In Question"
@@ -172,7 +172,7 @@ public class Runner {
         }
 
         roomIQ = dungeon[4][5]; // West
-        for (int i = 0; i < width / 2; i ++) {
+        for (int i = 0; i < width / 2 - 1; i ++) {
             dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
             Room[] nesw = {
                     dungeon[roomIQ.xLoc][roomIQ.yLoc-1], // 1 space north of the room "In Question"
