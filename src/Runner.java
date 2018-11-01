@@ -130,8 +130,8 @@ public class Runner {
 
     }
 
-    public static void printMap() {
-
+    public static void printMap(Room[][] map) {
+        System.out.println("╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗"); // FIRST ROW - BORDER
     }
 
 }
