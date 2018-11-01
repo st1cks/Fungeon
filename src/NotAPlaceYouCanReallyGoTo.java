@@ -7,16 +7,16 @@
  **/
 
 public class NotAPlaceYouCanReallyGoTo extends Room {
+    String[] map = {
+            "///",
+            "///",
+            "///"
+    };
     public NotAPlaceYouCanReallyGoTo(int x, int y) {
         super(x, y);
     }
 
     public String[] returnMapPortion() {
-        String[] map = {
-                "///",
-                "///",
-                "///"
-        };
         return map;
     }
     public boolean isAnActualRoom() {

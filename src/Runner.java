@@ -32,7 +32,6 @@ public class Runner {
         Profile you = new Profile(input, fieldLength/2, fieldLength/2);
 
         Room[][] field = randomGenerateField(fieldLength,fieldWidth);
-        printMap(field);
 
 
         while (gameRunning) {
@@ -46,7 +45,23 @@ public class Runner {
 
             printGUI(n, e, s, w);
             in = new Scanner(System.in);
-            input = in.nextLine();
+            input = in.nextLine().toLowerCase();
+
+            if (input.equals("m")) {
+                printMap(field);
+            }
+            if (input.equals("n")) {
+                you.move(0, -1);
+            }
+            if (input.equals("e")) {
+                you.move(1, 0);
+            }
+            if (input.equals("s")) {
+                you.move(0, 1);
+            }
+            if (input.equals("w")) {
+                you.move(-1, 0);
+            }
 
         }
 

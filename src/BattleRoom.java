@@ -8,16 +8,17 @@
 
 public class BattleRoom extends Room {
 
+    String[] map = {
+            "   ",
+            " B ",
+            "   "
+    };
+
     public BattleRoom(int x, int y) {
         super(x, y);
     }
 
     public String[] returnMapPortion() {
-        String[] map = {
-                "   ",
-                " B ",
-                "   "
-        };
         return map;
     }
 

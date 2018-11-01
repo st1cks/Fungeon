@@ -8,6 +8,11 @@
 
 public class Room {
     Profile occupant; int xLoc; int yLoc;
+    String[] map = {
+            "///",
+            "///",
+            "///"
+    };
 
     public Room(int x, int y) {
         xLoc = x; yLoc = y;
@@ -19,11 +24,6 @@ public class Room {
     }
 
     public String[] returnMapPortion() {
-        String[] map = {
-                "///",
-                "///",
-                "///"
-        };
         return map;
     }
 
