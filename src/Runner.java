@@ -26,10 +26,10 @@ public class Runner {
         System.out.println("Welcome, enter your name.");
         Scanner in = new Scanner(System.in);
         String input = in.nextLine();
-        Profile you = new Profile(input, 5, 5);
 
 
         int fieldLength = 11; int fieldWidth = 11;
+        Profile you = new Profile(input, fieldLength/2, fieldLength/2);
 
         Room[][] field = randomGenerateField(fieldLength,fieldWidth);
         printMap(field);
@@ -236,6 +236,10 @@ public class Runner {
                     }
                 }
         System.out.println(b);
+    }
+
+    public static void printGUI(boolean n, boolean e, boolean s, boolean w) {
+        String[] GUI
     }
 
 }
