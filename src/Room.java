@@ -1,3 +1,11 @@
+/**
+ * JESSE HAN
+ * AP JAVA PERIOD 4, 5
+ * MR FOLWELL'S CLASS
+ * I MADE THIS
+ * IT TOOK A WHILE
+ **/
+
 public class Room {
     Profile occupant; int xLoc; int yLoc;
 
