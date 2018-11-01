@@ -48,7 +48,7 @@ public class Runner {
             input = in.nextLine().toLowerCase();
 
             if (input.equals("m")) {
-                printMap(field);
+                printMap(field, you);
             }
             if (input.equals("n")) {
                 field[xLoc][yLoc-1].enterRoom(you);
@@ -213,7 +213,7 @@ public class Runner {
         }
     }
 
-    public static void printMap(Room[][] map) {
+    public static void printMap(Room[][] map, Profile profile) {
         String x = "  ";
         for (int i = 0; i < map.length; i ++) {
             x += i + "   ";
@@ -262,6 +262,7 @@ public class Runner {
                     }
                 }
         System.out.println(b);
+        System.out.println("You are located in " + profile.returnLocation()[0] + ", " + profile.returnLocation()[1]);
     }
 
     public static void printGUI(boolean n, boolean e, boolean s, boolean w) {
