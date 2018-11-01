@@ -16,7 +16,7 @@ public class Runner {
         int fieldLength = 11; int fieldWidth = 11;
 
         Room[][] field = randomGenerateField(11,11);
-
+        printMap(field);
 
 
         while (gameRunning) {
@@ -29,6 +29,12 @@ public class Runner {
     public static Room[][] randomGenerateField(int length, int width) {
         Room[][] dungeon = new Room[length][width];
         Room roomIQ; int randomAdjacentRoom;
+
+        for (int i = 0; i < dungeon.length; i ++) {
+            for (int j = 0; j < dungeon[i].length; j ++) {
+                dungeon[i][j] = new NotAPlaceYouCanReallyGoTo(i, j);
+            }
+        }
         dungeon[5][5] = new StartingRoom(5, 5);
 
         roomIQ = dungeon[5][4]; // Generate north. North generation starts here.
@@ -132,6 +138,17 @@ public class Runner {
 
     public static void printMap(Room[][] map) {
         System.out.println("╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗"); // FIRST ROW - BORDER
+        for (int i = 0; i < map.length; i ++) {
+            for (int j = 0; j < 3; j ++) {
+                String x = "";
+                for (int k = 0; k < map[i].length; k ++) {
+                    x += "║" + map[i][j].returnMapPortion()[k];
+                }
+                x += "║";
+                System.out.println(x);
+            }
+        }
+        System.out.println("╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝");
     }
 
 }

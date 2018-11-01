@@ -12,4 +12,10 @@ public class StartingRoom extends Room {
         };
         return map;
     }
+    public boolean deadEnd() {
+        return false;
+    }
+    public boolean isAnActualRoom() {
+        return true;
+    }
 }

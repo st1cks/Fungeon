@@ -22,5 +22,7 @@ public class Room {
     public boolean deadEnd() {
         return false;
     }
-
+    public boolean isAnActualRoom() {
+        return true;
+    }
 }

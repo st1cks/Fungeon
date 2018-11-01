@@ -16,4 +16,7 @@ public class EmptyRoom extends Room {
     public boolean deadEnd() {
         return false;
     }
+    public boolean isAnActualRoom() {
+        return true;
+    }
 }

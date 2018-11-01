@@ -15,4 +15,7 @@ public class ItemRoom extends Room {
     public boolean deadEnd() {
         return true;
     }
+    public boolean isAnActualRoom() {
+        return true;
+    }
 }

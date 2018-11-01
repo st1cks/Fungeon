@@ -11,4 +11,7 @@ public class NotAPlaceYouCanReallyGoTo extends Room {
         };
         return map;
     }
+    public boolean isAnActualRoom() {
+        return false;
+    }
 }
