@@ -1,15 +1,18 @@
-public class StartingRoom extends Room {
+public class ItemRoom extends Room {
 
-    public StartingRoom(int x, int y) {
+    public ItemRoom(int x, int y) {
         super(x, y);
     }
-
     public String[] returnMapPortion() {
         String[] map = {
                 "   ",
-                " S ",
+                " T ",
                 "   "
         };
         return map;
+    }
+
+    public boolean deadEnd() {
+        return true;
     }
 }
