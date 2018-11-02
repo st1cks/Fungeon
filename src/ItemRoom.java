@@ -68,7 +68,6 @@ public class ItemRoom extends Room {
     public boolean enterRoom(Profile z) {
         occupant = z;
         z.setLocation(yLoc, xLoc);
-        visited = true;
         hidden = false;
         map = newMapIcon;
         enterItemRoom(occupant);
@@ -78,27 +77,34 @@ public class ItemRoom extends Room {
     public void enterItemRoom(Profile z) {
         Item treasure = getRandomItem();
         boolean concluded = false;
-        System.out.println("You enter a room with a pedestial on the middle. On it, you find a " + treasure.name);
-        System.out.println("Take the " + treasure.name + "? (y/n)");
-        Scanner in = new Scanner(System.in);
-        String input = in.nextLine();
-        input.trim(); input.toLowerCase();
-        while (!concluded) {
-            if (input.equals("y")) {
-                if (z.returnItem().name.equals("Nothing")) {
-                    z.giveItem(treasure);
-                    System.out.println("You take the " + treasure.name);
+        if (!visited) {
+            System.out.println("You enter a room with a pedestial on the middle. On it, you find a " + treasure.name);
+            System.out.println("Take the " + treasure.name + "? (y/n)");
+            Scanner in = new Scanner(System.in);
+            String input = in.nextLine();
+            input.trim();
+            input.toLowerCase();
+            while (!concluded) {
+                if (input.equals("y")) {
+                    if (z.returnItem().name.toLowerCase().equals("nothing")) {
+                        z.giveItem(treasure);
+                        System.out.println("You take the " + treasure.name);
+                    }
+                    else {
+                        System.out.println("You get rid of your " + z.returnItem().name + " for the " + treasure.name);
+                        z.giveItem(treasure);
+                    }
+                    concluded = true;
                 }
-                else {
-                    System.out.println("You get rid of your " + z.returnItem() + " for the " + treasure.name);
-                    z.giveItem(treasure);
+                if (input.equals("n")) {
+                    System.out.println("You ignore the " + treasure.name + ", which disappears after you look back.");
+                    concluded = true;
                 }
-                concluded = true;
             }
-            if (input.equals("n")) {
-                System.out.println("You ignore the " + treasure.name + ", which disappears after you look back.");
-                concluded = true;
-            }
+            visited = true;
+        }
+        else {
+            System.out.println("The pedestial is still there, but whatever was on there has disappeared.");
         }
     }
 

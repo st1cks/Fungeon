@@ -316,11 +316,11 @@ public class Runner {
         if (!w && !e) {
             GUI[2] = "                   ||";
             overworld[2] = "";
-            overworld[3] = "";
+            overworld[4] = "";
         }
         if (!w && e) {
             GUI[2] = "          >  EAST  ||";
-            overworld[3] = "";
+            overworld[4] = "";
         }
         if (!e && w) {
             GUI[2] = "  WEST  <          ||";
@@ -329,7 +329,7 @@ public class Runner {
         if (!s) {
             GUI[3] = "                   ||";
             GUI[4] = "                   ||";
-            overworld[4] = "";
+            overworld[3] = "";
         }
 
         for (int i = 0; i < 6; i ++) {
