@@ -40,11 +40,12 @@ public class EmptyRoom extends Room {
         hidden = !mapVisibility;
     }
 
-    public void enterRoom(Profile z) {
+    public boolean enterRoom(Profile z) {
         occupant = z;
         z.setLocation(yLoc, xLoc);
         hidden = false;
         map = newMapIcon;
+        return false;
     }
 
     public void leaveRoom() {

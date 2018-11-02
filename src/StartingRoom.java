@@ -28,10 +28,11 @@ public class StartingRoom extends Room {
         super(x, y, hidden);
     }
 
-    public void enterRoom(Profile z) {
+    public boolean enterRoom(Profile z) {
         occupant = z;
         z.setLocation(yLoc, xLoc);
         map = newMapIcon;
+        return false;
     }
 
     public void leaveRoom() {

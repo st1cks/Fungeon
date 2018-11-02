@@ -18,7 +18,7 @@
 import java.util.Scanner;
 public class Runner {
     public static void main(String[] args) {
-        boolean gameRunning = true;
+        boolean gameEnd = false;
 
         // The character creation process, based on Profile class. The only real input the user has is with their name.
         System.out.println("Welcome, enter your name.");
@@ -27,12 +27,12 @@ public class Runner {
 
 
         int fieldLength = 11; int fieldWidth = 11;
-        Profile you = new Profile(input, fieldLength/2, fieldLength/2);
+        Profile you = new Profile(input, fieldLength/2, fieldLength/2, 100);
 
         Room[][] field = randomGenerateField(fieldLength,fieldWidth);
 
 
-        while (gameRunning) {
+        while (!gameEnd) {
             int xLoc = you.returnLocation()[1];
             int yLoc = you.returnLocation()[0];
             boolean n, e, s, w;
@@ -51,19 +51,19 @@ public class Runner {
             }
             if (input.equals("n")) {
                 field[xLoc][yLoc].leaveRoom();
-                field[xLoc][yLoc-1].enterRoom(you);
+                gameEnd = field[xLoc][yLoc-1].enterRoom(you);
             }
             if (input.equals("e")) {
                 field[xLoc][yLoc].leaveRoom();
-                field[xLoc+1][yLoc].enterRoom(you);
+                gameEnd = field[xLoc+1][yLoc].enterRoom(you);
             }
             if (input.equals("s")) {
                 field[xLoc][yLoc].leaveRoom();
-                field[xLoc][yLoc+1].enterRoom(you);
+                gameEnd = field[xLoc][yLoc+1].enterRoom(you);
             }
             if (input.equals("w")) {
                 field[xLoc][yLoc].leaveRoom();
-                field[xLoc-1][yLoc].enterRoom(you);
+                gameEnd = field[xLoc-1][yLoc].enterRoom(you);
             }
             // You may have noticed that the y, x format (length, width) has been switched to x, y in this particular case.
             // I don't know why, but for some crazy fucking reason y, x doesn't seem to work, and x,y does.
@@ -88,11 +88,11 @@ public class Runner {
 
         for (int i = 0; i < dungeon.length; i ++) {
             for (int j = 0; j < dungeon[i].length; j ++) {
-                dungeon[i][j] = new NotAPlaceYouCanReallyGoTo(j, i);
+                dungeon[i][j] = new NotAPlaceYouCanReallyGoTo(j, i, true);
                 // Fills the whole dungeon with walls, to create a clean slate to work on.
             }
         }
-        dungeon[length/2][width/2] = new StartingRoom(length/2, width/2);
+        dungeon[length/2][width/2] = new StartingRoom(length/2, width/2, false);
         // Creates the start room in the absolute middle of the dungeon.
 
         roomIQ = dungeon[4][5];
@@ -209,13 +209,13 @@ public class Runner {
     public static Room pickWhichRoomToPutIn(int y, int x) {
         int decider = generateRandomInteger(0,5);
         if (decider == 5) {
-            return new ItemRoom(y, x);
+            return new ItemRoom(y, x, true);
         }
         else if (decider < 2) {
-            return new EmptyRoom(y, x);
+            return new EmptyRoom(y, x, true);
         }
         else {
-            return new BattleRoom(y, x);
+            return new BattleRoom(y, x, true);
         }
     }
 

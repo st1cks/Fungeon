@@ -22,6 +22,11 @@ public class ItemRoom extends Room {
             "OTO",
             "OOO"
     };
+    private Item[] items = {
+            new Item ("Nothing",0,0,15),
+            new Item ("Stick", 3, 1, 10),
+
+    };
     private String[] map = oldMapIcon;
 
     public ItemRoom(int y, int x, boolean hidden) {
@@ -36,10 +41,11 @@ public class ItemRoom extends Room {
         }
     }
 
-    public void enterRoom(Profile z) {
+    public boolean enterRoom(Profile z) {
         occupant = z;
         z.setLocation(yLoc, xLoc);
         map = newMapIcon;
+        return false;
     }
 
     public void leaveRoom() {
