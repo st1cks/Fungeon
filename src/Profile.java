@@ -24,6 +24,7 @@ public class Profile {
         this.defence = Runner.generateRandomInteger(15,50);
         this.maxHealth = maxHealth;
         health = maxHealth;
+        heldItem = new Item("nothing",0,0,15);
     }
 
     public void giveItem(Item item) {
@@ -39,7 +40,7 @@ public class Profile {
             die();
         }
     }
-    
+
     public void die() {
         dead = true;
     }

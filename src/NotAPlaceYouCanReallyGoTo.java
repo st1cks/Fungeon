@@ -19,6 +19,11 @@ public class NotAPlaceYouCanReallyGoTo extends Room {
     public String[] returnMapPortion() {
         return map;
     }
+    public boolean enterRoom(Profile z) {
+        System.out.println("felksejf");
+        return false;
+    }
+
     public boolean isAnActualRoom() {
         return false;
     }

@@ -18,7 +18,7 @@
 import java.util.Scanner;
 public class Runner {
     public static void main(String[] args) {
-        boolean gameEnd = false;
+        boolean gameEnd = false; boolean walkIntoWall = false;
 
         // The character creation process, based on Profile class. The only real input the user has is with their name.
         System.out.println("Welcome, enter your name.");
@@ -33,6 +33,7 @@ public class Runner {
 
 
         while (!gameEnd) {
+            walkIntoWall = false;
             int xLoc = you.returnLocation()[1];
             int yLoc = you.returnLocation()[0];
             boolean n, e, s, w;
@@ -50,24 +51,42 @@ public class Runner {
                 printMap(field, you);
             }
             if (input.equals("n")) {
-                field[xLoc][yLoc].leaveRoom();
-                gameEnd = field[xLoc][yLoc-1].enterRoom(you);
+                if (n) {
+                    field[xLoc][yLoc].leaveRoom();
+                    gameEnd = field[xLoc][yLoc - 1].enterRoom(you);
+                }
+                else {walkIntoWall = true;}
             }
             if (input.equals("e")) {
-                field[xLoc][yLoc].leaveRoom();
-                gameEnd = field[xLoc+1][yLoc].enterRoom(you);
+                if (e) {
+                    field[xLoc][yLoc].leaveRoom();
+                    gameEnd = field[xLoc + 1][yLoc].enterRoom(you);
+                }
+                else {walkIntoWall = true;}
             }
             if (input.equals("s")) {
-                field[xLoc][yLoc].leaveRoom();
-                gameEnd = field[xLoc][yLoc+1].enterRoom(you);
+                if (s) {
+                    field[xLoc][yLoc].leaveRoom();
+                    gameEnd = field[xLoc][yLoc + 1].enterRoom(you);
+                }
+                else {walkIntoWall = true;}
             }
             if (input.equals("w")) {
-                field[xLoc][yLoc].leaveRoom();
-                gameEnd = field[xLoc-1][yLoc].enterRoom(you);
+                if (w) {
+                    field[xLoc][yLoc].leaveRoom();
+                    gameEnd = field[xLoc - 1][yLoc].enterRoom(you);
+                }
+                else {walkIntoWall = true;}
             }
             // You may have noticed that the y, x format (length, width) has been switched to x, y in this particular case.
             // I don't know why, but for some crazy fucking reason y, x doesn't seem to work, and x,y does.
             // So I'm keeping it like this.
+            if (walkIntoWall) {
+                System.out.println("You stare down the cave wall, then walk straight into it. Ouch.");
+                System.out.println("Type anything to continue.");
+                in = new Scanner(System.in);
+                input = in.nextLine();
+            }
         }
 
 
@@ -88,7 +107,7 @@ public class Runner {
 
         for (int i = 0; i < dungeon.length; i ++) {
             for (int j = 0; j < dungeon[i].length; j ++) {
-                dungeon[i][j] = new NotAPlaceYouCanReallyGoTo(j, i, true);
+                dungeon[i][j] = new NotAPlaceYouCanReallyGoTo(j, i, false);
                 // Fills the whole dungeon with walls, to create a clean slate to work on.
             }
         }
@@ -209,13 +228,13 @@ public class Runner {
     public static Room pickWhichRoomToPutIn(int y, int x) {
         int decider = generateRandomInteger(0,5);
         if (decider == 5) {
-            return new ItemRoom(y, x, true);
+            return new ItemRoom(y, x, false);
         }
         else if (decider < 2) {
-            return new EmptyRoom(y, x, true);
+            return new EmptyRoom(y, x, false);
         }
         else {
-            return new BattleRoom(y, x, true);
+            return new BattleRoom(y, x, false);
         }
     }
 
@@ -299,7 +318,7 @@ public class Runner {
             overworld[3] = "";
         }
         if (!w && e) {
-            GUI[2] = "         >   EAST  ||";
+            GUI[2] = "          >  EAST  ||";
             overworld[3] = "";
         }
         if (!e && w) {
