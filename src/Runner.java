@@ -33,13 +33,13 @@ public class Runner {
 
 
         while (gameRunning) {
-            int xLoc = you.returnLocation()[0];
-            int yLoc = you.returnLocation()[1];
+            int xLoc = you.returnLocation()[1];
+            int yLoc = you.returnLocation()[0];
             boolean n, e, s, w;
-            n = field[yLoc-1][xLoc].isAnActualRoom();
-            e = field[yLoc][xLoc+1].isAnActualRoom();
-            s = field[yLoc+1][xLoc].isAnActualRoom();
-            w = field[yLoc][xLoc-1].isAnActualRoom();
+            n = field[xLoc][yLoc-1].isAnActualRoom();
+            e = field[xLoc+1][yLoc].isAnActualRoom();
+            s = field[xLoc][yLoc+1].isAnActualRoom();
+            w = field[xLoc-1][yLoc].isAnActualRoom();
             printGUI(n, e, s, w);
 
 
@@ -50,20 +50,20 @@ public class Runner {
                 printMap(field, you);
             }
             if (input.equals("n")) {
-                field[yLoc-1][xLoc].enterRoom(you);
-                field[you.returnLocation()[0]][you.returnLocation()[1]].leaveRoom();
+                field[xLoc][yLoc].leaveRoom();
+                field[xLoc][yLoc-1].enterRoom(you);
             }
             if (input.equals("e")) {
-                field[yLoc][xLoc+1].enterRoom(you);
-                field[you.returnLocation()[0]][you.returnLocation()[1]].leaveRoom();
+                field[xLoc][yLoc].leaveRoom();
+                field[xLoc+1][yLoc].enterRoom(you);
             }
             if (input.equals("s")) {
-                field[yLoc+1][xLoc].enterRoom(you);
-                field[you.returnLocation()[0]][you.returnLocation()[1]].leaveRoom();
+                field[xLoc][yLoc].leaveRoom();
+                field[xLoc][yLoc+1].enterRoom(you);
             }
             if (input.equals("w")) {
-                field[yLoc][xLoc-1].enterRoom(you);
-                field[you.returnLocation()[0]][you.returnLocation()[1]].leaveRoom();
+                field[xLoc][yLoc].leaveRoom();
+                field[xLoc-1][yLoc].enterRoom(you);
             }
 
         }
@@ -86,7 +86,7 @@ public class Runner {
 
         for (int i = 0; i < dungeon.length; i ++) {
             for (int j = 0; j < dungeon[i].length; j ++) {
-                dungeon[i][j] = new NotAPlaceYouCanReallyGoTo(i, j);
+                dungeon[i][j] = new NotAPlaceYouCanReallyGoTo(j, i);
                 // Fills the whole dungeon with walls, to create a clean slate to work on.
             }
         }
@@ -94,6 +94,7 @@ public class Runner {
         // Creates the start room in the absolute middle of the dungeon.
 
         roomIQ = dungeon[4][5];
+        roomIQ = pickWhichRoomToPutIn(roomIQ.yLoc, roomIQ.xLoc);
         // By setting "roomIQ" to a space in the dungeon, I'm essentially "selecting" this piece of the dungeon to work
         // on.
         for (int i = 0; i < length / 2 - 1; i ++) {
@@ -116,6 +117,7 @@ public class Runner {
                 // unused, if the one selected happens to be used.
                 randomAdjacentRoom = generateRandomInteger(0,3);
             }
+            roomIQ = nesw[randomAdjacentRoom];
             dungeon[roomIQ.yLoc][roomIQ.xLoc] = pickWhichRoomToPutIn(roomIQ.yLoc, roomIQ.xLoc);
             // Picks what type of room will be placed in this spot.
             if (roomIQ.deadEnd()) {
@@ -125,6 +127,7 @@ public class Runner {
         }
         // The other three copies of the code below are the exact same thing, in different directions.
         roomIQ = dungeon[5][6]; // Generate to the east.
+        roomIQ = pickWhichRoomToPutIn(roomIQ.yLoc, roomIQ.xLoc);
         for (int i = 0; i < width / 2 - 1; i ++) {
             dungeon[roomIQ.yLoc][roomIQ.xLoc] = pickWhichRoomToPutIn(roomIQ.yLoc, roomIQ.xLoc);
             Room[] nesw = {
@@ -148,6 +151,7 @@ public class Runner {
         }
 
         roomIQ = dungeon[6][5]; // South
+        roomIQ = pickWhichRoomToPutIn(roomIQ.yLoc, roomIQ.xLoc);
         for (int i = 0; i < length / 2 - 1; i ++) {
             dungeon[roomIQ.yLoc][roomIQ.xLoc] = pickWhichRoomToPutIn(roomIQ.yLoc, roomIQ.xLoc);
             Room[] nesw = {
@@ -171,6 +175,7 @@ public class Runner {
         }
 
         roomIQ = dungeon[5][4]; // West
+        roomIQ = pickWhichRoomToPutIn(roomIQ.yLoc, roomIQ.xLoc);
         for (int i = 0; i < width / 2 - 1; i ++) {
             dungeon[roomIQ.yLoc][roomIQ.xLoc] = pickWhichRoomToPutIn(roomIQ.yLoc, roomIQ.xLoc);
             Room[] nesw = {
@@ -202,13 +207,13 @@ public class Runner {
     public static Room pickWhichRoomToPutIn(int y, int x) {
         int decider = generateRandomInteger(0,5);
         if (decider == 5) {
-            return new ItemRoom(x, y);
+            return new ItemRoom(y, x);
         }
         else if (decider < 2) {
-            return new EmptyRoom(x, y);
+            return new EmptyRoom(y, x);
         }
         else {
-            return new BattleRoom(x, y);
+            return new BattleRoom(y, x);
         }
     }
 
@@ -230,7 +235,7 @@ public class Runner {
             for (int j = 0; j < 3; j ++) {
                 String z = "";
                 for (int k = 0; k < map[i].length; k ++) {
-                    z += "║" + map[i][k].returnMapPortion()[j];
+                    z += "║" + map[k][i].returnMapPortion()[j];
                 }
                 z += "║";
                 if (j == 1) {
@@ -261,7 +266,7 @@ public class Runner {
                     }
                 }
         System.out.println(b);
-        System.out.println("You are located in " + profile.returnLocation()[0] + ", " + profile.returnLocation()[1]);
+        System.out.println("You are located in " + profile.returnLocation()[1] + ", " + profile.returnLocation()[0]);
     }
 
     public static void printGUI(boolean n, boolean e, boolean s, boolean w) {

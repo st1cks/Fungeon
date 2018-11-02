@@ -13,7 +13,7 @@ public class Profile {
 
     // Constructing a profile. This class will be extended by a Monster class to generate a monster's
     // stats and stuff.
-    public Profile(String name, int x, int y) {
+    public Profile(String name, int y, int x) {
         this.name = name;
         this.xLoc = x;
         this.yLoc = y;
@@ -22,12 +22,12 @@ public class Profile {
         this.defence = Runner.generateRandomInteger(15,50);
     }
 
-    public void move(int x, int y) {
+    public void move(int y, int x) {
         xLoc += x;
         yLoc += y;
     }
 
-    public void setLocation(int x, int y) {
+    public void setLocation(int y, int x) {
         xLoc = x;
         yLoc = y;
     }
