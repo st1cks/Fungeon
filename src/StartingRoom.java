@@ -19,6 +19,7 @@ public class StartingRoom extends Room {
             "OSO",
             "OOO"
     };
+    private boolean visited = true;
 
     public String[] returnMapPortion() {
         return map;

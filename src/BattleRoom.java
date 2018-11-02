@@ -28,6 +28,7 @@ public class BattleRoom extends Room {
             "OBO",
             "OOO"
     };
+    private boolean visited = false;
 
     public BattleRoom(int y, int x, boolean hidden) {
         super(x, y, hidden);
@@ -37,6 +38,7 @@ public class BattleRoom extends Room {
         occupant = z;
         z.setLocation(yLoc, xLoc);
         hidden = false;
+        visited = true;
         map = newMapIcon;
         return false;
     }

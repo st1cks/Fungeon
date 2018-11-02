@@ -41,6 +41,10 @@ public class Profile {
         }
     }
 
+    public Item returnItem() {
+        return heldItem;
+    }
+
     public void die() {
         dead = true;
     }

@@ -7,7 +7,7 @@
  **/
 
 public class Room {
-    Profile occupant; int xLoc; int yLoc; boolean hidden;
+    Profile occupant; int xLoc; int yLoc; boolean hidden; boolean visited;
     private String[] oldMapIcon = {
             "   ",
             "   ",
@@ -41,6 +41,7 @@ public class Room {
         occupant = z;
         z.setLocation(yLoc, xLoc);
         hidden = false;
+        visited = true;
         map = newMapIcon;
         return false;
     }

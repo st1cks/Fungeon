@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * JESSE HAN
  * AP JAVA PERIOD 4, 5
@@ -49,6 +51,7 @@ public class ItemRoom extends Room {
             new Item("Karambit",20,0,20)
     };
     private String[] map = oldMapIcon;
+    private boolean visited = false;
 
     public ItemRoom(int y, int x, boolean hidden) {
         super(x, y, hidden);
@@ -65,9 +68,57 @@ public class ItemRoom extends Room {
     public boolean enterRoom(Profile z) {
         occupant = z;
         z.setLocation(yLoc, xLoc);
+        visited = true;
         hidden = false;
         map = newMapIcon;
+        enterItemRoom(occupant);
         return false;
+    }
+
+    public void enterItemRoom(Profile z) {
+        Item treasure = getRandomItem();
+        boolean concluded = false;
+        System.out.println("You enter a room with a pedestial on the middle. On it, you find a " + treasure.name);
+        System.out.println("Take the " + treasure.name + "? (y/n)");
+        Scanner in = new Scanner(System.in);
+        String input = in.nextLine();
+        input.trim(); input.toLowerCase();
+        while (!concluded) {
+            if (input.equals("y")) {
+                if (z.returnItem().name.equals("Nothing")) {
+                    z.giveItem(treasure);
+                    System.out.println("You take the " + treasure.name);
+                }
+                else {
+                    System.out.println("You get rid of your " + z.returnItem() + " for the " + treasure.name);
+                    z.giveItem(treasure);
+                }
+                concluded = true;
+            }
+            if (input.equals("n")) {
+                System.out.println("You ignore the " + treasure.name + ", which disappears after you look back.");
+                concluded = true;
+            }
+        }
+    }
+
+    public Item getRandomItem() {
+        double decider = Math.random();
+        if (decider < 0.05) {
+            return legendaryItems[Runner.generateRandomInteger(0,2)]; //5%
+        }
+        else if (decider < 0.15) {
+            return epicItems[Runner.generateRandomInteger(0,2)]; // 10%
+        }
+        else if (decider < 0.35) {
+            return rareItems[Runner.generateRandomInteger(0,2)]; //20%
+        }
+        else if (decider < 0.65) {
+            return uncommonItems[Runner.generateRandomInteger(0,2)]; // 30%
+        }
+        else {
+            return commonItems[Runner.generateRandomInteger(0,2)]; // 35%
+        }
     }
 
     public void leaveRoom() {

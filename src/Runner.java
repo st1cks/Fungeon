@@ -21,6 +21,7 @@ public class Runner {
         boolean gameEnd = false; boolean walkIntoWall = false;
 
         // The character creation process, based on Profile class. The only real input the user has is with their name.
+        System.out.println("WARNING: The map only works right if you have the right font. In IntelliJ, go to File>Settings>Editor>Font>Change Font to Consolas");
         System.out.println("Welcome, enter your name.");
         Scanner in = new Scanner(System.in);
         String input = in.nextLine();
@@ -228,13 +229,13 @@ public class Runner {
     public static Room pickWhichRoomToPutIn(int y, int x) {
         int decider = generateRandomInteger(0,5);
         if (decider == 5) {
-            return new ItemRoom(y, x, false);
+            return new ItemRoom(y, x, true);
         }
         else if (decider < 2) {
-            return new EmptyRoom(y, x, false);
+            return new EmptyRoom(y, x, true);
         }
         else {
-            return new BattleRoom(y, x, false);
+            return new BattleRoom(y, x, true);
         }
     }
 

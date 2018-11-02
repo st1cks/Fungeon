@@ -22,6 +22,7 @@ public class EmptyRoom extends Room {
             "   ",
             "   "
     };
+    private boolean visited = false;
 
     public EmptyRoom(int y, int x, boolean hidden) {
         super(x, y, hidden);
@@ -44,6 +45,7 @@ public class EmptyRoom extends Room {
         occupant = z;
         z.setLocation(yLoc, xLoc);
         hidden = false;
+        visited = true;
         map = newMapIcon;
         return false;
     }
