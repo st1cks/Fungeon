@@ -12,8 +12,8 @@ public class NotAPlaceYouCanReallyGoTo extends Room {
             "///",
             "///"
     };
-    public NotAPlaceYouCanReallyGoTo(int y, int x) {
-        super(x, y);
+    public NotAPlaceYouCanReallyGoTo(int y, int x, boolean hidden) {
+        super(x, y, hidden);
     }
 
     public String[] returnMapPortion() {

@@ -12,6 +12,11 @@ public class ItemRoom extends Room {
             " T ",
             "   "
     };
+    private String[] hiddenMap = {
+            "///",
+            "///",
+            "///"
+    };
     private String[] newMapIcon = {
             "OOO",
             "OTO",
@@ -19,11 +24,16 @@ public class ItemRoom extends Room {
     };
     private String[] map = oldMapIcon;
 
-    public ItemRoom(int y, int x) {
-        super(x, y);
+    public ItemRoom(int y, int x, boolean hidden) {
+        super(x, y, hidden);
     }
     public String[] returnMapPortion() {
-        return map;
+        if (hidden) {
+            return hiddenMap;
+        }
+        else {
+            return map;
+        }
     }
 
     public void enterRoom(Profile z) {
@@ -34,6 +44,9 @@ public class ItemRoom extends Room {
 
     public void leaveRoom() {
         map = oldMapIcon;
+    }
+    public void changeMapVisiblity(boolean mapVisibility) {
+        hidden = !mapVisibility;
     }
 
     public boolean deadEnd() {

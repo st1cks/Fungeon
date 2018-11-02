@@ -13,6 +13,11 @@ public class BattleRoom extends Room {
             " B ",
             "   "
     };
+    private String[] hiddenMap = {
+            "///",
+            "///",
+            "///"
+    };
     private String[] map = {
             "   ",
             " B ",
@@ -24,13 +29,14 @@ public class BattleRoom extends Room {
             "OOO"
     };
 
-    public BattleRoom(int y, int x) {
-        super(x, y);
+    public BattleRoom(int y, int x, boolean hidden) {
+        super(x, y, hidden);
     }
 
     public void enterRoom(Profile z) {
         occupant = z;
         z.setLocation(yLoc, xLoc);
+        hidden = false;
         map = newMapIcon;
     }
 
@@ -39,9 +45,17 @@ public class BattleRoom extends Room {
     }
 
     public String[] returnMapPortion() {
-        return map;
+        if (hidden) {
+            return hiddenMap;
+        }
+        else {
+            return map;
+        }
     }
 
+    public void changeMapVisiblity(boolean mapVisibility) {
+        hidden = !mapVisibility;
+    }
     public boolean deadEnd() {
         return false;
     }

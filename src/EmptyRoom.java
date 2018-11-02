@@ -12,24 +12,38 @@ public class EmptyRoom extends Room {
             "O O",
             "OOO"
     };
+    private String[] hiddenMap = {
+            "///",
+            "///",
+            "///"
+    };
     private String[] oldMapIcon = {
             "   ",
             "   ",
             "   "
     };
 
-    public EmptyRoom(int y, int x) {
-        super(x, y);
+    public EmptyRoom(int y, int x, boolean hidden) {
+        super(x, y, hidden);
     }
     private String[] map = oldMapIcon;
 
     public String[] returnMapPortion() {
-        return map;
+        if (hidden) {
+            return hiddenMap;
+        }
+        else {
+            return map;
+        }
+    }
+    public void changeMapVisiblity(boolean mapVisibility) {
+        hidden = !mapVisibility;
     }
 
     public void enterRoom(Profile z) {
         occupant = z;
         z.setLocation(yLoc, xLoc);
+        hidden = false;
         map = newMapIcon;
     }
 

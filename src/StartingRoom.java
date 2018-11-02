@@ -24,8 +24,8 @@ public class StartingRoom extends Room {
         return map;
     }
 
-    public StartingRoom(int y, int x) {
-        super(x, y);
+    public StartingRoom(int y, int x, boolean hidden) {
+        super(x, y, hidden);
     }
 
     public void enterRoom(Profile z) {

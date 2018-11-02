@@ -7,12 +7,7 @@
  **/
 
 public class Room {
-    Profile occupant; int xLoc; int yLoc;
-    private String[] map = {
-            "   ",
-            "   ",
-            "   "
-    };
+    Profile occupant; int xLoc; int yLoc; boolean hidden;
     private String[] oldMapIcon = {
             "   ",
             "   ",
@@ -23,14 +18,29 @@ public class Room {
             "   ",
             "   ",
     };
+    private String[] hiddenMap = {
+            "///",
+            "///",
+            "///"
+    };
+    private String[] map = {
+            "   ",
+            "   ",
+            "   "
+    };
 
-    public Room(int y, int x) {
-        xLoc = x; yLoc = y;
+    public Room(int y, int x, boolean hidden) {
+        xLoc = x; yLoc = y; this.hidden = hidden;
+    }
+
+    public void changeMapVisiblity(boolean mapVisibility) {
+        hidden = !mapVisibility;
     }
 
     public void enterRoom(Profile z) {
         occupant = z;
         z.setLocation(yLoc, xLoc);
+        hidden = false;
         map = newMapIcon;
     }
     public void leaveRoom() {
@@ -38,7 +48,12 @@ public class Room {
     }
 
     public String[] returnMapPortion() {
-        return map;
+        if (hidden) {
+            return hiddenMap;
+        }
+        else {
+            return map;
+        }
     }
 
     public boolean deadEnd() {
