@@ -7,21 +7,21 @@
  **/
 
 public class EmptyRoom extends Room {
-
-    private String[] map = {
-            "   ",
-            "   ",
-            "   "
-    };
     private String[] newMapIcon = {
             "OOO",
             "O O",
             "OOO"
     };
+    private String[] oldMapIcon = {
+            "   ",
+            "   ",
+            "   "
+    };
 
-    public EmptyRoom(int x, int y) {
+    public EmptyRoom(int y, int x) {
         super(x, y);
     }
+    private String[] map = oldMapIcon;
 
     public String[] returnMapPortion() {
         return map;
@@ -29,16 +29,11 @@ public class EmptyRoom extends Room {
 
     public void enterRoom(Profile z) {
         occupant = z;
-        z.setLocation(xLoc, yLoc);
+        z.setLocation(yLoc, xLoc);
         map = newMapIcon;
     }
 
     public void leaveRoom() {
-        String[] oldMapIcon = {
-                "   ",
-                "   ",
-                "   "
-        };
         map = oldMapIcon;
     }
 

@@ -7,8 +7,7 @@
  **/
 
 public class ItemRoom extends Room {
-
-    private String[] map = {
+    private String[] oldMapIcon = {
             "   ",
             " T ",
             "   "
@@ -18,8 +17,9 @@ public class ItemRoom extends Room {
             "OTO",
             "OOO"
     };
+    private String[] map = oldMapIcon;
 
-    public ItemRoom(int x, int y) {
+    public ItemRoom(int y, int x) {
         super(x, y);
     }
     public String[] returnMapPortion() {
@@ -28,16 +28,11 @@ public class ItemRoom extends Room {
 
     public void enterRoom(Profile z) {
         occupant = z;
-        z.setLocation(xLoc, yLoc);
+        z.setLocation(yLoc, xLoc);
         map = newMapIcon;
     }
 
     public void leaveRoom() {
-        String[] oldMapIcon = {
-                "   ",
-                " T ",
-                "   "
-        };
         map = oldMapIcon;
     }
 

@@ -33,7 +33,7 @@ public class Profile {
     }
 
     public int[] returnLocation() {
-        int[] z = {xLoc, yLoc};
+        int[] z = {yLoc, xLoc};
         return z;
     }
 

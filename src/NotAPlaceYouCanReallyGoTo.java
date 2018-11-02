@@ -7,12 +7,12 @@
  **/
 
 public class NotAPlaceYouCanReallyGoTo extends Room {
-    String[] map = {
+    private String[] map = {
             "///",
             "///",
             "///"
     };
-    public NotAPlaceYouCanReallyGoTo(int x, int y) {
+    public NotAPlaceYouCanReallyGoTo(int y, int x) {
         super(x, y);
     }
 

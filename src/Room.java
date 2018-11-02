@@ -9,23 +9,29 @@
 public class Room {
     Profile occupant; int xLoc; int yLoc;
     private String[] map = {
-            "///",
-            "///",
-            "///"
+            "   ",
+            "   ",
+            "   "
     };
     private String[] oldMapIcon = {
             "   ",
             "   ",
             "   "
     };
+    private String[] newMapIcon = {
+            "   ",
+            "   ",
+            "   ",
+    };
 
-    public Room(int x, int y) {
+    public Room(int y, int x) {
         xLoc = x; yLoc = y;
     }
 
     public void enterRoom(Profile z) {
         occupant = z;
-        z.setLocation(xLoc, yLoc);
+        z.setLocation(yLoc, xLoc);
+        map = newMapIcon;
     }
     public void leaveRoom() {
         map = oldMapIcon;

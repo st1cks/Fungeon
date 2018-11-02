@@ -8,11 +8,12 @@
 
 public class StartingRoom extends Room {
 
-    private String[] map = {
+    private String[] oldMapIcon = {
             "   ",
             " S ",
             "   "
     };
+    private String[] map = oldMapIcon;
     private String[] newMapIcon = {
             "OOO",
             "OSO",
@@ -23,22 +24,17 @@ public class StartingRoom extends Room {
         return map;
     }
 
-    public StartingRoom(int x, int y) {
+    public StartingRoom(int y, int x) {
         super(x, y);
     }
 
     public void enterRoom(Profile z) {
         occupant = z;
-        z.setLocation(xLoc, yLoc);
+        z.setLocation(yLoc, xLoc);
         map = newMapIcon;
     }
 
     public void leaveRoom() {
-        String[] oldMapIcon = {
-                "   ",
-                " S ",
-                "   "
-        };
         map = oldMapIcon;
     }
 

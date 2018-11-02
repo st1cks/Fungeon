@@ -19,8 +19,6 @@ import java.util.Scanner;
 public class Runner {
     public static void main(String[] args) {
         boolean gameRunning = true;
-        int OVERWORLD = 0; int BATTLE = 1;
-        int gameState;
 
         // The character creation process, based on Profile class. The only real input the user has is with their name.
         System.out.println("Welcome, enter your name.");
@@ -38,12 +36,13 @@ public class Runner {
             int xLoc = you.returnLocation()[0];
             int yLoc = you.returnLocation()[1];
             boolean n, e, s, w;
-            n = field[xLoc][yLoc-1].isAnActualRoom();
-            e = field[xLoc+1][yLoc].isAnActualRoom();
-            s = field[xLoc][yLoc+1].isAnActualRoom();
-            w = field[xLoc-1][yLoc].isAnActualRoom();
-
+            n = field[yLoc-1][xLoc].isAnActualRoom();
+            e = field[yLoc][xLoc+1].isAnActualRoom();
+            s = field[yLoc+1][xLoc].isAnActualRoom();
+            w = field[yLoc][xLoc-1].isAnActualRoom();
             printGUI(n, e, s, w);
+
+
             in = new Scanner(System.in);
             input = in.nextLine().toLowerCase();
 
@@ -51,19 +50,19 @@ public class Runner {
                 printMap(field, you);
             }
             if (input.equals("n")) {
-                field[xLoc][yLoc-1].enterRoom(you);
+                field[yLoc-1][xLoc].enterRoom(you);
                 field[you.returnLocation()[0]][you.returnLocation()[1]].leaveRoom();
             }
             if (input.equals("e")) {
-                field[xLoc+1][yLoc].enterRoom(you);
+                field[yLoc][xLoc+1].enterRoom(you);
                 field[you.returnLocation()[0]][you.returnLocation()[1]].leaveRoom();
             }
             if (input.equals("s")) {
-                field[xLoc][yLoc+1].enterRoom(you);
+                field[yLoc+1][xLoc].enterRoom(you);
                 field[you.returnLocation()[0]][you.returnLocation()[1]].leaveRoom();
             }
             if (input.equals("w")) {
-                field[xLoc-1][yLoc].enterRoom(you);
+                field[yLoc][xLoc-1].enterRoom(you);
                 field[you.returnLocation()[0]][you.returnLocation()[1]].leaveRoom();
             }
 
@@ -94,16 +93,16 @@ public class Runner {
         dungeon[length/2][width/2] = new StartingRoom(length/2, width/2);
         // Creates the start room in the absolute middle of the dungeon.
 
-        roomIQ = dungeon[5][4];
+        roomIQ = dungeon[4][5];
         // By setting "roomIQ" to a space in the dungeon, I'm essentially "selecting" this piece of the dungeon to work
         // on.
         for (int i = 0; i < length / 2 - 1; i ++) {
-            dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
+            dungeon[roomIQ.yLoc][roomIQ.xLoc] = pickWhichRoomToPutIn(roomIQ.yLoc, roomIQ.xLoc);
             Room[] nesw = {
-                    dungeon[roomIQ.xLoc][roomIQ.yLoc-1], // 1 space north of the room "In Question"
-                    dungeon[roomIQ.xLoc+1][roomIQ.yLoc], // 1 space east of the room "In Question"
-                    dungeon[roomIQ.xLoc][roomIQ.yLoc+1], // S.O.
-                    dungeon[roomIQ.xLoc-1][roomIQ.yLoc]  // W
+                    dungeon[roomIQ.yLoc-1][roomIQ.xLoc], // 1 space north of the room "In Question"
+                    dungeon[roomIQ.yLoc][roomIQ.xLoc+1], // 1 space east of the room "In Question"
+                    dungeon[roomIQ.yLoc+1][roomIQ.xLoc], // S.O.
+                    dungeon[roomIQ.yLoc][roomIQ.xLoc-1]  // W
             };
             // nesw[] refers to every room that is directly N, E, S, and W of the room in question. This is to find
             // out which spaces are unused and therefore can have something generated on it.
@@ -117,7 +116,7 @@ public class Runner {
                 // unused, if the one selected happens to be used.
                 randomAdjacentRoom = generateRandomInteger(0,3);
             }
-            dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
+            dungeon[roomIQ.yLoc][roomIQ.xLoc] = pickWhichRoomToPutIn(roomIQ.yLoc, roomIQ.xLoc);
             // Picks what type of room will be placed in this spot.
             if (roomIQ.deadEnd()) {
                 break;
@@ -125,14 +124,14 @@ public class Runner {
             }
         }
         // The other three copies of the code below are the exact same thing, in different directions.
-        roomIQ = dungeon[6][5]; // Generate to the east.
+        roomIQ = dungeon[5][6]; // Generate to the east.
         for (int i = 0; i < width / 2 - 1; i ++) {
-            dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
+            dungeon[roomIQ.yLoc][roomIQ.xLoc] = pickWhichRoomToPutIn(roomIQ.yLoc, roomIQ.xLoc);
             Room[] nesw = {
-                    dungeon[roomIQ.xLoc][roomIQ.yLoc-1], // 1 space north of the room "In Question"
-                    dungeon[roomIQ.xLoc+1][roomIQ.yLoc], // 1 space east of the room "In Question"
-                    dungeon[roomIQ.xLoc][roomIQ.yLoc+1], // S.O.
-                    dungeon[roomIQ.xLoc-1][roomIQ.yLoc] // W
+                    dungeon[roomIQ.yLoc-1][roomIQ.xLoc], // 1 space north of the room "In Question"
+                    dungeon[roomIQ.yLoc][roomIQ.xLoc+1], // 1 space east of the room "In Question"
+                    dungeon[roomIQ.yLoc+1][roomIQ.xLoc], // S.O.
+                    dungeon[roomIQ.yLoc][roomIQ.xLoc-1]  // W
             };
             if (nesw[0].isAnActualRoom() && nesw[1].isAnActualRoom() && nesw[2].isAnActualRoom() && nesw[3].isAnActualRoom()) {
                 break;
@@ -142,20 +141,20 @@ public class Runner {
                 randomAdjacentRoom = generateRandomInteger(0,3);
             }
             roomIQ = nesw[randomAdjacentRoom];
-            dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
+            dungeon[roomIQ.yLoc][roomIQ.xLoc] = pickWhichRoomToPutIn(roomIQ.yLoc, roomIQ.xLoc);
             if (roomIQ.deadEnd()) {
                 break;
             }
         }
 
-        roomIQ = dungeon[5][6]; // South
+        roomIQ = dungeon[6][5]; // South
         for (int i = 0; i < length / 2 - 1; i ++) {
-            dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
+            dungeon[roomIQ.yLoc][roomIQ.xLoc] = pickWhichRoomToPutIn(roomIQ.yLoc, roomIQ.xLoc);
             Room[] nesw = {
-                    dungeon[roomIQ.xLoc][roomIQ.yLoc-1], // 1 space north of the room "In Question"
-                    dungeon[roomIQ.xLoc+1][roomIQ.yLoc], // 1 space east of the room "In Question"
-                    dungeon[roomIQ.xLoc][roomIQ.yLoc+1], // S.O.
-                    dungeon[roomIQ.xLoc-1][roomIQ.yLoc] // W
+                    dungeon[roomIQ.yLoc-1][roomIQ.xLoc], // 1 space north of the room "In Question"
+                    dungeon[roomIQ.yLoc][roomIQ.xLoc+1], // 1 space east of the room "In Question"
+                    dungeon[roomIQ.yLoc+1][roomIQ.xLoc], // S.O.
+                    dungeon[roomIQ.yLoc][roomIQ.xLoc-1]  // W
             };
             if (nesw[0].isAnActualRoom() && nesw[1].isAnActualRoom() && nesw[2].isAnActualRoom() && nesw[3].isAnActualRoom()) {
                 break;
@@ -165,20 +164,20 @@ public class Runner {
                 randomAdjacentRoom = generateRandomInteger(0,3);
             }
             roomIQ = nesw[randomAdjacentRoom];
-            dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
+            dungeon[roomIQ.yLoc][roomIQ.xLoc] = pickWhichRoomToPutIn(roomIQ.yLoc, roomIQ.xLoc);
             if (roomIQ.deadEnd()) {
                 break;
             }
         }
 
-        roomIQ = dungeon[4][5]; // West
+        roomIQ = dungeon[5][4]; // West
         for (int i = 0; i < width / 2 - 1; i ++) {
-            dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
+            dungeon[roomIQ.yLoc][roomIQ.xLoc] = pickWhichRoomToPutIn(roomIQ.yLoc, roomIQ.xLoc);
             Room[] nesw = {
-                    dungeon[roomIQ.xLoc][roomIQ.yLoc-1], // 1 space north of the room "In Question"
-                    dungeon[roomIQ.xLoc+1][roomIQ.yLoc], // 1 space east of the room "In Question"
-                    dungeon[roomIQ.xLoc][roomIQ.yLoc+1], // S.O.
-                    dungeon[roomIQ.xLoc-1][roomIQ.yLoc] // W
+                    dungeon[roomIQ.yLoc-1][roomIQ.xLoc], // 1 space north of the room "In Question"
+                    dungeon[roomIQ.yLoc][roomIQ.xLoc+1], // 1 space east of the room "In Question"
+                    dungeon[roomIQ.yLoc+1][roomIQ.xLoc], // S.O.
+                    dungeon[roomIQ.yLoc][roomIQ.xLoc-1]  // W
             };
             if (nesw[0].isAnActualRoom() && nesw[1].isAnActualRoom() && nesw[2].isAnActualRoom() && nesw[3].isAnActualRoom()) {
                 break;
@@ -188,7 +187,7 @@ public class Runner {
                 randomAdjacentRoom = generateRandomInteger(0,3);
             }
             roomIQ = nesw[randomAdjacentRoom];
-            dungeon[roomIQ.xLoc][roomIQ.yLoc] = pickWhichRoomToPutIn(roomIQ.xLoc, roomIQ.yLoc);
+            dungeon[roomIQ.yLoc][roomIQ.xLoc] = pickWhichRoomToPutIn(roomIQ.yLoc, roomIQ.xLoc);
             if (roomIQ.deadEnd()) {
                 break;
             }
@@ -200,7 +199,7 @@ public class Runner {
         return (int) (Math.random() * ((max + 1) - min)) + min;
     }
 
-    public static Room pickWhichRoomToPutIn(int x, int y) {
+    public static Room pickWhichRoomToPutIn(int y, int x) {
         int decider = generateRandomInteger(0,5);
         if (decider == 5) {
             return new ItemRoom(x, y);
@@ -292,11 +291,11 @@ public class Runner {
             overworld[2] = "";
             overworld[3] = "";
         }
-        else if (!w) {
+        if (!w && e) {
             GUI[2] = "         >   EAST  ||";
             overworld[3] = "";
         }
-        else if (!e) {
+        if (!e && w) {
             GUI[2] = "  WEST  <          ||";
             overworld[2] = "";
         }

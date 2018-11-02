@@ -8,6 +8,11 @@
 
 public class BattleRoom extends Room {
 
+    private String[] oldMapIcon = {
+            "   ",
+            " B ",
+            "   "
+    };
     private String[] map = {
             "   ",
             " B ",
@@ -19,22 +24,17 @@ public class BattleRoom extends Room {
             "OOO"
     };
 
-    public BattleRoom(int x, int y) {
+    public BattleRoom(int y, int x) {
         super(x, y);
     }
 
     public void enterRoom(Profile z) {
         occupant = z;
-        z.setLocation(xLoc, yLoc);
+        z.setLocation(yLoc, xLoc);
         map = newMapIcon;
     }
 
     public void leaveRoom() {
-        String[] oldMapIcon = {
-                "   ",
-                " B ",
-                "   "
-        };
         map = oldMapIcon;
     }
 
