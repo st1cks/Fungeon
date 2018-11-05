@@ -79,6 +79,12 @@ public class Runner {
                 }
                 else {walkIntoWall = true;}
             }
+            if (input.equals("t")) {
+                System.out.println("Name: " + you.returnName());
+                System.out.println("Strength: " + you.returnStat(1) + " (" + you.returnItem().strengthBonus + ")");
+                System.out.println("Defence: " + you.returnStat(2) + " (" + you.returnItem().defenceBonus + ")");
+                System.out.println("Speed: " + you.returnStat(0) + " (" + you.returnItem().speedBonus + ")");
+            }
             // You may have noticed that the y, x format (length, width) has been switched to x, y in this particular case.
             // I don't know why, but for some crazy fucking reason y, x doesn't seem to work, and x,y does.
             // So I'm keeping it like this.

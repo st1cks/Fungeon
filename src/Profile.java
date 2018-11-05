@@ -45,6 +45,10 @@ public class Profile {
         return heldItem;
     }
 
+    public String returnName() {
+        return name;
+    }
+
     public void die() {
         dead = true;
     }
