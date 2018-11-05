@@ -23,9 +23,9 @@ public class Monster extends Profile {
     }
 
     public void scaleStats(int monstersKilled) {
-        this.strength *= (1 + (monstersKilled * 0.05));
-        this.defence *= (1 + (monstersKilled * 0.05));
-        this.speed *= (1 + (monstersKilled * 0.05));
+        this.strength *= (1 + (monstersKilled * 0.12));
+        this.defence *= (1 + (monstersKilled * 0.12));
+        this.speed *= (1 + (monstersKilled * 0.12));
     }
 
     public int returnStat(int statId) {

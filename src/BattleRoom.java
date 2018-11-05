@@ -44,7 +44,7 @@ public class BattleRoom extends Room {
         z.setLocation(yLoc, xLoc);
         hidden = false;
         Monster monster = listOfMonsters[0];
-
+        monster.scaleStats(z.monstersKilled);
         if (!visited) {
             System.out.println("You encounter a " + monster.returnName() + "!");
             boolean concluded = false;
@@ -75,6 +75,20 @@ public class BattleRoom extends Room {
                     System.out.println("Strength " + monster.returnStat(1));
                     System.out.println("Defence: " + monster.returnStat(2));
                     System.out.println("Speed: " + monster.returnStat(0));
+                    if (monster.makeChoice().equals("a")) {
+
+                    }
+                    else {
+
+                    }
+                }
+                if (input.equals("r")) {
+                    double fleeChance = (double) (z.returnStat(0) / monster.returnStat(0));
+                    System.out.println("You attempt to flee...");
+                    double random = Math.random();
+                    if (fleeChance < random) {
+
+                    }
                 }
             }
 
