@@ -44,6 +44,7 @@ public class EmptyRoom extends Room {
     public boolean enterRoom(Profile z) {
         occupant = z;
         z.setLocation(yLoc, xLoc);
+        hidden = false;
         map = newMapIcon;
         if (!visited) {
             System.out.println("Wow, this room has nothing in it.");

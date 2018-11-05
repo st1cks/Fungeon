@@ -7,9 +7,9 @@
  **/
 
 public class Profile {
-    private String name;
-    private int xLoc, yLoc, strength, defence, speed, health, maxHealth;
-    private Item heldItem;
+    String name;
+    int xLoc, yLoc, strength, defence, speed, health, maxHealth;
+    Item heldItem;
     boolean dead = false;
 
 
@@ -25,6 +25,15 @@ public class Profile {
         this.maxHealth = maxHealth;
         health = maxHealth;
         heldItem = new Item("nothing",0,0,15);
+    }
+
+    public Profile(String name, int maxHealth, int strength, int defence, int speed) {
+        this.name = name;
+        this.maxHealth = maxHealth;
+        health = maxHealth;
+        this.strength = strength;
+        this.defence = defence;
+        this.speed = speed;
     }
 
     public void giveItem(Item item) {

@@ -75,16 +75,17 @@ public class ItemRoom extends Room {
     }
 
     public void enterItemRoom(Profile z) {
+        hidden = false;
         Item treasure = getRandomItem();
         boolean concluded = false;
         if (!visited) {
             System.out.println("You enter a room with a pedestial on the middle. On it, you find a " + treasure.name);
             System.out.println("Take the " + treasure.name + "? (y/n)");
-            Scanner in = new Scanner(System.in);
-            String input = in.nextLine();
-            input.trim();
-            input.toLowerCase();
             while (!concluded) {
+                Scanner in = new Scanner(System.in);
+                String input = in.nextLine();
+                input.trim();
+                input.toLowerCase();
                 if (input.equals("y")) {
                     if (z.returnItem().name.toLowerCase().equals("nothing")) {
                         z.giveItem(treasure);
