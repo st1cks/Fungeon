@@ -43,8 +43,9 @@ public class BattleRoom extends Room {
         occupant = z;
         z.setLocation(yLoc, xLoc);
         hidden = false;
+        Monster monster = listOfMonsters[0];
+
         if (!visited) {
-            Monster monster = listOfMonsters[0];
             System.out.println("You encounter a " + monster.returnName() + "!");
             boolean concluded = false;
             while (!concluded || !z.returnDeathStatus()) {
