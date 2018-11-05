@@ -44,7 +44,7 @@ public class BattleRoom extends Room {
         z.setLocation(yLoc, xLoc);
         hidden = false;
         if (!visited) {
-            Profile monster = listOfMonsters[0];
+            Monster monster = listOfMonsters[0];
             System.out.println("You encounter a " + monster.returnName() + "!");
             boolean concluded = false;
             while (!concluded || !z.returnDeathStatus()) {
@@ -53,7 +53,27 @@ public class BattleRoom extends Room {
                 String input = in.nextLine();
                 input.toLowerCase().trim();
                 if (input.equals("a")) {
+                    if (monster.makeChoice().equals("a")) {
 
+                    }
+                    else {
+
+                    }
+                }
+                if (input.equals("d")) {
+                    if (monster.makeChoice().equals("a")) {
+
+                    }
+                    else {
+
+                    }
+                }
+                if (input.equals("i")) {
+                    System.out.println("You take a good look at the " + monster.returnName() + ".");
+                    System.out.println("Name: " + monster.returnName());
+                    System.out.println("Strength " + monster.returnStat(1));
+                    System.out.println("Defence: " + monster.returnStat(2));
+                    System.out.println("Speed: " + monster.returnStat(0));
                 }
             }
 

@@ -8,7 +8,7 @@
 
 public class Profile {
     String name;
-    int xLoc, yLoc, strength, defence, speed, health, maxHealth;
+    int xLoc, yLoc, strength, defence, speed, health, maxHealth; int monstersKilled;
     Item heldItem;
     boolean dead = false;
 
@@ -24,6 +24,7 @@ public class Profile {
         this.defence = Runner.generateRandomInteger(15,50);
         this.maxHealth = maxHealth;
         health = maxHealth;
+        this.monstersKilled = 0;
         heldItem = new Item("nothing",0,0,15);
     }
 
@@ -34,6 +35,10 @@ public class Profile {
         this.strength = strength;
         this.defence = defence;
         this.speed = speed;
+    }
+
+    public int getMonstersKilled() {
+        return monstersKilled;
     }
 
     public void giveItem(Item item) {

@@ -2,6 +2,7 @@ public class Monster extends Profile {
 
 
     private boolean dead = false;
+    private String decision;
 
     public Monster(String name, int maxHealth, int strength, int defence, int speed) {
         super(name, maxHealth, strength, defence, speed);
@@ -36,6 +37,17 @@ public class Monster extends Profile {
             // Why 100,000? If I get a horrifyingly high number in the output, I know exactly where to look...
         }
     }
+
+    public String makeChoice() {
+        int random = Runner.generateRandomInteger(0,1);
+        if (random == 0) {
+            return "a";
+        }
+        else {
+            return "d";
+        }
+    }
+
     public boolean returnDeathStatus() {
         return dead;
     }
