@@ -32,6 +32,12 @@ public class StartingRoom extends Room {
         occupant = z;
         z.setLocation(yLoc, xLoc);
         map = newMapIcon;
+        if (visited) {
+            System.out.println("You're at the starting room, and you don't know where to go.");
+        }
+        else {
+            System.out.println("Back at the start.");
+        }
         return false;
     }
 

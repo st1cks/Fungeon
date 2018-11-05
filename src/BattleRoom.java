@@ -38,7 +38,7 @@ public class BattleRoom extends Room {
         occupant = z;
         z.setLocation(yLoc, xLoc);
         hidden = false;
-        visited = true;
+
         map = newMapIcon;
         return false;
     }
