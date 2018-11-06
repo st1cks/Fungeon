@@ -40,7 +40,7 @@ public class BattleRoom extends Room {
     }
 
     public boolean enterRoom(Profile z) {
-        visited = true;
+
         map = newMapIcon;
         occupant = z;
         z.setLocation(yLoc, xLoc);
@@ -48,6 +48,7 @@ public class BattleRoom extends Room {
         Monster monster = listOfMonsters[0];
         monster.scaleStats(z.monstersKilled);
         if (!visited) {
+            visited = true;
             System.out.println("You encounter a " + monster.returnName() + "!");
             boolean concluded = false;
             while (!concluded || !z.returnDeathStatus()) {
