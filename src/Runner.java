@@ -95,6 +95,15 @@ public class Runner {
                 input = in.nextLine();
             }
         }
+        if (you.returnDeathStatus()) {
+            System.out.println("  #####      #     #     #  ######               #####    #     #  #######  ######  ");
+            System.out.println(" #     #    # #    ##   ##  #                   #     #   #     #  #        #     # ");
+            System.out.println(" #         #   #   # # # #  #                   #     #   #     #  #        #     # ");
+            System.out.println(" #        #     #  #  #  #  #####               #     #   #     #  #####    ######  ");
+            System.out.println(" #   ###  #######  #     #  #                   #     #    #   #   #        #  #    ");
+            System.out.println(" #     #  #     #  #     #  #                   #     #     # #    #        #   #   ");
+            System.out.println("  #####   #     #  #     #  ######               #####       #     #######  #    #  ");
+        }
 
 
     }
