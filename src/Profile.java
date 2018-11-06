@@ -19,9 +19,9 @@ public class Profile {
         this.name = name;
         this.xLoc = x;
         this.yLoc = y;
-        this.speed = Runner.generateRandomInteger(10,70);
-        this.strength = Runner.generateRandomInteger(15,50);
-        this.defence = Runner.generateRandomInteger(15,50);
+        this.speed = Runner.generateRandomInteger(10,40);
+        this.strength = Runner.generateRandomInteger(15,35);
+        this.defence = Runner.generateRandomInteger(15,35);
         this.maxHealth = maxHealth;
         health = maxHealth;
         this.monstersKilled = 0;
