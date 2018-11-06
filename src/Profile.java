@@ -76,6 +76,22 @@ public class Profile {
         yLoc += y;
     }
 
+    public int returnCalculatedStats(int statId) {
+        if (statId == 0) {
+            return speed + returnItem().speedBonus;
+        }
+        if (statId == 1) {
+            return strength + returnItem().strengthBonus;
+        }
+        if (statId == 2) {
+            return defence + returnItem().defenceBonus;
+        }
+        else {
+            System.out.println("Uh-oh! This is an error!");
+            return 10000000;
+        }
+    }
+
     public void setLocation(int y, int x) {
         xLoc = x;
         yLoc = y;
@@ -97,9 +113,16 @@ public class Profile {
             return defence;
         }
         else {
+            System.out.println("Uh-oh! This is an error!");
             return 100000;
             // Why 100,000? If I get a horrifyingly high number in the output, I know exactly where to look...
         }
+    }
+
+    public void changeStats(int spe, int str, int def) {
+        speed += spe;
+        strength += str;
+        defence += def;
     }
 
 }
