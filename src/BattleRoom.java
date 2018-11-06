@@ -30,9 +30,9 @@ public class BattleRoom extends Room {
             "OOO"
     };
     private Monster[] listOfMonsters = {
-            new Monster("Goblin",50,35,17,20),
-            new Monster("Imp",35,28,26,40),
-            new Monster("Zombie",60,45,20,14),
+            new Monster("Goblin",50,20,19,21),
+            new Monster("Imp",35,15,26,35),
+            new Monster("Zombie",60,30,24,10),
     };
 
     private boolean visited = false;
@@ -64,15 +64,20 @@ public class BattleRoom extends Room {
                 String input = in.nextLine();
                 input.toLowerCase().trim();
 
+                String monsterInput = monster.makeChoice();
+                if (monster.health == monster.maxHealth) {
+                    monsterInput = "a";
+                }
+
                 double monsterStrength = (double) (monster.returnStat(1) / z.returnCalculatedStats(2));
                 double playerStrength = (double) (z.returnCalculatedStats(1) / (monster.returnStat(2)));
-                double monsterHealPower = (double) (monster.health * 0.05);
-                double playerHealPower = (double) (z.health * 0.07);
+                double monsterHealPower = (double) (monster.health * 0.09);
+                double playerHealPower = (double) (z.health * 0.15);
 
                 if (input.equals("a")) {
-                    if (monster.makeChoice().equals("a")) {
-                        damageToPlayer = Runner.generateRandomInteger((int) (Math.random() * 3.0 * monsterStrength),(int) (Math.random() * 10.0 * monsterStrength));
-                        damageToMonster = Runner.generateRandomInteger((int) (Math.random() * 3.0 * playerStrength),(int) (Math.random() * 10.0 * playerStrength));
+                    if (monsterInput.equals("a")) {
+                        damageToPlayer = Runner.generateRandomInteger((int) (Math.random() * 15.0 * monsterStrength),(int) (Math.random() * 25.0 * monsterStrength));
+                        damageToMonster = Runner.generateRandomInteger((int) (Math.random() * 15.0 * playerStrength),(int) (Math.random() * 25.0 * playerStrength));
                         monster.changeHealth(-damageToMonster);
                         if (z.returnItem().name.equals("nothing")) {
                             System.out.println("You slap the " + monster.returnName() + " very hard! You deal " + damageToMonster + " damage!");
@@ -87,7 +92,7 @@ public class BattleRoom extends Room {
                         }
                     }
                     else {
-                        damageToMonster = Runner.generateRandomInteger((int) (Math.random() * 1.0 * playerStrength),(int) (Math.random() * 4.0 * playerStrength));
+                        damageToMonster = Runner.generateRandomInteger((int) (Math.random() * 10.0 * playerStrength),(int) (Math.random() * 15.0 * playerStrength));
                         monster.changeHealth((int)(monsterHealPower));
                         System.out.println("The " + monster.returnName() + " heals " + (int)(monsterHealPower) + " health by defending.");
                         monster.changeHealth(-damageToMonster);
@@ -95,8 +100,8 @@ public class BattleRoom extends Room {
                     }
                 }
                 if (input.equals("d")) {
-                    if (monster.makeChoice().equals("a")) {
-                        damageToPlayer = Runner.generateRandomInteger((int) (Math.random() * 1.0 * monsterStrength),(int) (Math.random() * 4.0 * monsterStrength));
+                    if (monsterInput.equals("a")) {
+                        damageToPlayer = Runner.generateRandomInteger((int) (Math.random() * 10.0 * monsterStrength),(int) (Math.random() * 15.0 * monsterStrength));
                         z.changeHealth((int)(playerHealPower));
                         System.out.println("You heal " + (int)(monsterHealPower) + " health by defending.");
                         z.changeHealth(-damageToPlayer);
@@ -115,8 +120,8 @@ public class BattleRoom extends Room {
                     System.out.println("Strength " + monster.returnStat(1));
                     System.out.println("Defence: " + monster.returnStat(2));
                     System.out.println("Speed: " + monster.returnStat(0));
-                    if (monster.makeChoice().equals("a")) {
-                        damageToPlayer = Runner.generateRandomInteger((int) (Math.random() * 3.0 * monsterStrength),(int) (Math.random() * 7.0 * monsterStrength));
+                    if (monsterInput.equals("a")) {
+                        damageToPlayer = Runner.generateRandomInteger((int) (Math.random() * 12.0 * monsterStrength),(int) (Math.random() * 19.0 * monsterStrength));
                         z.changeHealth(-damageToPlayer);
                         System.out.println("You took reduced damage. The " + monster.returnName() + " deals " + damageToPlayer + " damage.");
                     }
@@ -135,8 +140,8 @@ public class BattleRoom extends Room {
                     }
                     else {
                         System.out.println("You failed to flee...");
-                        if (monster.makeChoice().equals("a")) {
-                            damageToPlayer = Runner.generateRandomInteger((int) (Math.random() * 8.0 * monsterStrength),(int) (Math.random() * 15.0 * monsterStrength));;
+                        if (monsterInput.equals("a")) {
+                            damageToPlayer = Runner.generateRandomInteger((int) (Math.random() * 19.0 * monsterStrength),(int) (Math.random() * 40.0 * monsterStrength));;
                             z.changeHealth(-damageToPlayer);
                             System.out.println("Vulnerable, you took extra damage. The " + monster.returnName() + " dealt " + damageToPlayer + " damage.");
                         }
@@ -149,7 +154,7 @@ public class BattleRoom extends Room {
             }
             if (monster.returnDeathStatus()) {
                 System.out.println("You defeated the " + monster.returnName() + "!");
-                z.changeStats((int)(Math.random() * (z.returnStat(0) * 0.1)),(int)(Math.random() * (z.returnStat(0) * 0.1)),(int)(Math.random() * (z.returnStat(0) * 0.1)));
+                z.changeStats((int)(Math.random() * (z.returnStat(0) * 0.25)),(int)(Math.random() * (z.returnStat(0) * 0.25)),(int)(Math.random() * (z.returnStat(0) * 0.25)));
                 System.out.println("You feel yourself get a little stronger after that battle.");
                 z.monstersKilled ++;
             }

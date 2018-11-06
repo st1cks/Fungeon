@@ -237,7 +237,7 @@ public class Runner {
         if (decider == 5) {
             return new ItemRoom(y, x, true);
         }
-        else if (decider < 2) {
+        else if (decider < 1) {
             return new EmptyRoom(y, x, true);
         }
         else {
