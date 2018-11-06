@@ -84,6 +84,7 @@ public class Runner {
             }
             if (input.equals("t")) {
                 System.out.println("Name: " + you.returnName());
+                System.out.println("Health: " + you.health + " / " + you.maxHealth);
                 System.out.println("Strength: " + you.returnStat(1) + " (" + you.returnItem().strengthBonus + ")");
                 System.out.println("Defence: " + you.returnStat(2) + " (" + you.returnItem().defenceBonus + ")");
                 System.out.println("Speed: " + you.returnStat(0) + " (" + you.returnItem().speedBonus + ")");
