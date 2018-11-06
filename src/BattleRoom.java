@@ -83,10 +83,17 @@ public class BattleRoom extends Room {
                 }
                 if (input.equals("d")) {
                     if (monster.makeChoice().equals("a")) {
-
+                        damageToPlayer = (int) (Math.random() * 4.0 * (double)(monster.returnStat(1)/z.returnCalculatedStats(2)));
+                        z.changeHealth((int)(z.maxHealth * 0.20));
+                        System.out.println("You heal " + (int)(monster.maxHealth * 0.20) + " health by defending.");
+                        z.changeHealth(-damageToPlayer);
+                        System.out.println("The " + monster.returnName() + " only deals " + damageToPlayer + " damage.");
                     }
                     else {
-
+                        z.changeHealth((int)(z.maxHealth * 0.20));
+                        monster.changeHealth((int)(monster.maxHealth * 0.20));
+                        System.out.println("The " + monster.returnName() + " heals " + (int)(monster.maxHealth * 0.20) + " health by defending.");
+                        System.out.println("You heal " + (int)(monster.maxHealth * 0.20) + " health by defending.");
                     }
                 }
                 if (input.equals("i")) {
@@ -96,10 +103,13 @@ public class BattleRoom extends Room {
                     System.out.println("Defence: " + monster.returnStat(2));
                     System.out.println("Speed: " + monster.returnStat(0));
                     if (monster.makeChoice().equals("a")) {
-
+                        damageToPlayer = (int) (Math.random() * 7.0 * (double)(monster.returnStat(1)/z.returnCalculatedStats(2)));
+                        z.changeHealth(-damageToPlayer);
+                        System.out.println("You took reduced damage. The " + monster.returnName() + " deals " + damageToPlayer + " damage.");
                     }
                     else {
-
+                        monster.changeHealth((int)(monster.maxHealth * 0.20));
+                        System.out.println("The " + monster.returnName() + " heals " + (int)(monster.maxHealth * 0.20) + " health by defending.");
                     }
                 }
                 if (input.equals("r")) {
@@ -112,16 +122,21 @@ public class BattleRoom extends Room {
                     }
                     else {
                         if (monster.makeChoice().equals("a")) {
-
+                            damageToPlayer = (int) (Math.random() * 15.0 * (double)(monster.returnStat(1)/z.returnCalculatedStats(2)));
+                            z.changeHealth(-damageToPlayer);
+                            System.out.println("Vulnerable, you took extra damage. The " + monster.returnName() + " dealt " + damageToPlayer + " damage.");
                         }
                         else {
-
+                            monster.changeHealth((int)(monster.maxHealth * 0.20));
+                            System.out.println("The " + monster.returnName() + " defended that turn, healing " + (int)(monster.maxHealth * 0.20) + " health.");
                         }
                     }
                 }
             }
             if (monster.returnDeathStatus()) {
                 System.out.println("You defeated the " + monster.returnName() + "!");
+                z.changeStats((int)(Math.random() * (z.returnStat(0) * 0.1)),(int)(Math.random() * (z.returnStat(0) * 0.1)),(int)(Math.random() * (z.returnStat(0) * 0.1)));
+                System.out.println("You feel yourself get a little stronger after that battle.");
             }
             if (z.returnDeathStatus()) {
                 return true;
