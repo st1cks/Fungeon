@@ -82,11 +82,10 @@ public class BattleRoom extends Room {
                         if (z.returnItem().name.equals("nothing")) {
                             System.out.println("You slap the " + monster.returnName() + " very hard! You deal " + damageToMonster + " damage!");
                         }
-                        System.out.println("You attack the " + monster.returnName() + " with your " + z.returnItem().name + ", dealing " + damageToMonster  + " damage!");
-                        if (monster.returnDeathStatus()) {
-                            concluded = true;
-                        }
                         else {
+                            System.out.println("You attack the " + monster.returnName() + " with your " + z.returnItem().name + ", dealing " + damageToMonster  + " damage!");
+                        }
+                        if (!monster.returnDeathStatus()) {
                             z.changeHealth(-damageToPlayer);
                             System.out.println("The " + monster.returnName() + " deals " + damageToPlayer + " damage to you.");
                         }
@@ -150,6 +149,9 @@ public class BattleRoom extends Room {
                             System.out.println("The " + monster.returnName() + " defended that turn, healing " + (int)(monsterHealPower) + " health.");
                         }
                     }
+                }
+                if (monster.returnDeathStatus()) {
+                    concluded = true;
                 }
             }
             if (monster.returnDeathStatus()) {
