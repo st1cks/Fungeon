@@ -53,6 +53,7 @@ public class Runner {
             if (input.equals("n")) {
                 if (n) {
                     field[xLoc][yLoc].leaveRoom();
+                    you.changeHealth((int)(you.health * 0.2));
                     gameEnd = field[xLoc][yLoc - 1].enterRoom(you);
                 }
                 else {walkIntoWall = true;}
@@ -60,6 +61,7 @@ public class Runner {
             if (input.equals("e")) {
                 if (e) {
                     field[xLoc][yLoc].leaveRoom();
+                    you.changeHealth((int)(you.health * 0.2));
                     gameEnd = field[xLoc + 1][yLoc].enterRoom(you);
                 }
                 else {walkIntoWall = true;}
@@ -67,6 +69,7 @@ public class Runner {
             if (input.equals("s")) {
                 if (s) {
                     field[xLoc][yLoc].leaveRoom();
+                    you.changeHealth((int)(you.health * 0.2));
                     gameEnd = field[xLoc][yLoc + 1].enterRoom(you);
                 }
                 else {walkIntoWall = true;}
@@ -74,6 +77,7 @@ public class Runner {
             if (input.equals("w")) {
                 if (w) {
                     field[xLoc][yLoc].leaveRoom();
+                    you.changeHealth((int)(you.health * 0.2));
                     gameEnd = field[xLoc - 1][yLoc].enterRoom(you);
                 }
                 else {walkIntoWall = true;}
@@ -89,10 +93,14 @@ public class Runner {
             // I don't know why, but for some crazy fucking reason y, x doesn't seem to work, and x,y does.
             // So I'm keeping it like this.
             if (walkIntoWall) {
-                System.out.println("You stare down the cave wall, then walk straight into it. Ouch.");
+                System.out.println("You stare down the cave wall, then walk straight into it. You take 1 damage.");
+                you.changeHealth(-1);
                 System.out.println("Type anything to continue.");
                 in = new Scanner(System.in);
                 input = in.nextLine();
+            }
+            if (you.returnDeathStatus()) {
+                gameEnd = true;
             }
         }
         if (you.returnDeathStatus()) {
