@@ -51,8 +51,11 @@ public class BattleRoom extends Room {
             visited = true;
             System.out.println("You encounter a " + monster.returnName() + "!");
             boolean concluded = false;
-            while (!concluded || !z.returnDeathStatus()) {
+            while (!concluded && !z.returnDeathStatus()) {
                 int damageToMonster, damageToPlayer;
+                System.out.println("=============================================================================");
+                System.out.println("HP: " + z.health + " / " + z.maxHealth);
+                System.out.println(monster.returnName() + "'s HP: " + monster.health + " / " + z.maxHealth);
                 System.out.println("What do you do? (a)ttack/(d)efend/(i)nspect/(r)un");
                 Scanner in = new Scanner(System.in);
                 String input = in.nextLine();
