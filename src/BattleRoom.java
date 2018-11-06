@@ -30,8 +30,8 @@ public class BattleRoom extends Room {
             "OOO"
     };
     private Monster[] listOfMonsters = {
-            new Monster("Goblin",50,20,19,21),
-            new Monster("Imp",35,15,26,35),
+            new Monster("Goblin",50,25,19,21),
+            new Monster("Imp",35,20,26,35),
             new Monster("Zombie",60,30,24,10),
     };
 
@@ -71,13 +71,19 @@ public class BattleRoom extends Room {
 
                 double monsterStrength = (double) (monster.returnStat(1) / z.returnCalculatedStats(2));
                 double playerStrength = (double) (z.returnCalculatedStats(1) / (monster.returnStat(2)));
-                double monsterHealPower = (double) (monster.health * 0.09);
-                double playerHealPower = (double) (z.health * 0.15);
+                if (monsterStrength < 1.0) {
+                    monsterStrength = 1.0;
+                }
+                if (playerStrength < 1.0) {
+                    playerStrength = 1.0;
+                }
+                double monsterHealPower = (double) (monster.health * 0.15);
+                double playerHealPower = (double) (z.health * 0.18);
 
                 if (input.equals("a")) {
                     if (monsterInput.equals("a")) {
-                        damageToPlayer = Runner.generateRandomInteger((int) (Math.random() * 15.0 * monsterStrength),(int) (Math.random() * 25.0 * monsterStrength));
-                        damageToMonster = Runner.generateRandomInteger((int) (Math.random() * 15.0 * playerStrength),(int) (Math.random() * 25.0 * playerStrength));
+                        damageToPlayer = Runner.generateRandomInteger((int) (6.0 * monsterStrength),(int) (12.0 * monsterStrength));
+                        damageToMonster = Runner.generateRandomInteger((int) (6.0 * playerStrength),(int) (12.0 * playerStrength));
                         monster.changeHealth(-damageToMonster);
                         if (z.returnItem().name.equals("nothing")) {
                             System.out.println("You slap the " + monster.returnName() + " very hard! You deal " + damageToMonster + " damage!");
@@ -91,26 +97,22 @@ public class BattleRoom extends Room {
                         }
                     }
                     else {
-                        damageToMonster = Runner.generateRandomInteger((int) (Math.random() * 10.0 * playerStrength),(int) (Math.random() * 15.0 * playerStrength));
+                        damageToMonster = Runner.generateRandomInteger((int) (1.0 * playerStrength),(int) (7.0 * playerStrength));
                         monster.changeHealth((int)(monsterHealPower));
-                        System.out.println("The " + monster.returnName() + " heals " + (int)(monsterHealPower) + " health by defending.");
                         monster.changeHealth(-damageToMonster);
                         System.out.println("You attack the defending " + monster.returnName() + " and only deal " + damageToMonster + " damage.");
                     }
                 }
                 if (input.equals("d")) {
                     if (monsterInput.equals("a")) {
-                        damageToPlayer = Runner.generateRandomInteger((int) (Math.random() * 10.0 * monsterStrength),(int) (Math.random() * 15.0 * monsterStrength));
+                        damageToPlayer = Runner.generateRandomInteger((int) (1.0 * monsterStrength),(int) (7.0 * monsterStrength));
                         z.changeHealth((int)(playerHealPower));
-                        System.out.println("You heal " + (int)(monsterHealPower) + " health by defending.");
                         z.changeHealth(-damageToPlayer);
                         System.out.println("The " + monster.returnName() + " only deals " + damageToPlayer + " damage.");
                     }
                     else {
                         z.changeHealth((int)(playerHealPower));
                         monster.changeHealth((int)(monsterHealPower));
-                        System.out.println("The " + monster.returnName() + " heals " + (int)(monsterHealPower) + " health by defending.");
-                        System.out.println("You heal " + (int)(playerHealPower) + " health by defending.");
                     }
                 }
                 if (input.equals("i")) {
@@ -120,13 +122,12 @@ public class BattleRoom extends Room {
                     System.out.println("Defence: " + monster.returnStat(2));
                     System.out.println("Speed: " + monster.returnStat(0));
                     if (monsterInput.equals("a")) {
-                        damageToPlayer = Runner.generateRandomInteger((int) (Math.random() * 12.0 * monsterStrength),(int) (Math.random() * 19.0 * monsterStrength));
+                        damageToPlayer = Runner.generateRandomInteger((int) (3.0 * monsterStrength),(int) (8.0 * monsterStrength));
                         z.changeHealth(-damageToPlayer);
                         System.out.println("You took reduced damage. The " + monster.returnName() + " deals " + damageToPlayer + " damage.");
                     }
                     else {
                         monster.changeHealth((int)(monsterHealPower));
-                        System.out.println("The " + monster.returnName() + " heals " + (int)(monsterHealPower) + " health by defending.");
                     }
                 }
                 if (input.equals("r")) {
@@ -140,7 +141,7 @@ public class BattleRoom extends Room {
                     else {
                         System.out.println("You failed to flee...");
                         if (monsterInput.equals("a")) {
-                            damageToPlayer = Runner.generateRandomInteger((int) (Math.random() * 19.0 * monsterStrength),(int) (Math.random() * 40.0 * monsterStrength));;
+                            damageToPlayer = Runner.generateRandomInteger((int) (8.0 * monsterStrength),(int) (16.0 * monsterStrength));
                             z.changeHealth(-damageToPlayer);
                             System.out.println("Vulnerable, you took extra damage. The " + monster.returnName() + " dealt " + damageToPlayer + " damage.");
                         }

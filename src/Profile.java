@@ -48,7 +48,11 @@ public class Profile {
     public void changeHealth(int change) {
         health += change;
         if (health > maxHealth) {
+            System.out.println("You recover " + (change-(health - maxHealth)) + " health.");
             health = maxHealth;
+        }
+        else {
+            System.out.println("You recover " + change + " health.");
         }
         if (health <= 0) {
             die();
