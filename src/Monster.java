@@ -31,9 +31,9 @@ public class Monster extends Profile {
     public void scaleStats(int monstersKilled) {
         this.maxHealth = (int) (maxHealth * (1 + (monstersKilled * 0.10)));
         health = maxHealth;
-        this.strength = (int) (strength * (1 + (monstersKilled * 0.35)));
-        this.defence = (int) (defence * (1 + (monstersKilled * 0.35)));
-        this.speed = (int) (speed * (1 + (monstersKilled * 0.35)));
+        this.strength = (int) (strength * (1 + (monstersKilled * 0.15)));
+        this.defence = (int) (defence * (1 + (monstersKilled * 0.15)));
+        this.speed = (int) (speed * (1 + (monstersKilled * 0.10)));
     }
 
     public int returnStat(int statId) {
@@ -53,8 +53,8 @@ public class Monster extends Profile {
     }
 
     public String makeChoice() {
-        int random = Runner.generateRandomInteger(0,1);
-        if (random == 0) {
+        int random = Runner.generateRandomInteger(0,4);
+        if (random < 2) {
             return "a";
         }
         else {

@@ -25,30 +25,30 @@ public class ItemRoom extends Room {
             "OOO"
     };
     private Item[] commonItems = {
-            new Item ("Stick", 3, 1, 10),
-            new Item ("Plastic Bottle",0,1,15),
-            new Item ("Very Rusty Sword",3,2,0),
+            new Item ("Stick", 5, 1, 10),
+            new Item ("Plastic Bottle",2,2,15),
+            new Item ("Very Rusty Sword",8,3,0),
     };
     private Item[] uncommonItems = {
-            new Item("Pizza Cutter",4,0,8),
-            new Item("Kitchen Knife",6,0,6),
-            new Item("Very Heavy Rock",4,5,-10),
+            new Item("Pizza Cutter",7,0,8),
+            new Item("Kitchen Knife",9,0,6),
+            new Item("Very Heavy Rock",13,12,-10),
     };
     private Item[] rareItems = {
-            new Item("Baseball Bat",5,2,8),
-            new Item("Dagger",9,0,10),
-            new Item("Shortsword",9,4,5),
+            new Item("Baseball Bat",12,7,8),
+            new Item("Dagger",15,0,10),
+            new Item("Shortsword",14,4,5),
 
     };
     private Item[] epicItems = {
-            new Item("Gun",15,0,0),
-            new Item("Longsword",13,7,0),
-            new Item("Sledgehammer",25,0,-15)
+            new Item("Pistol",28,0,0),
+            new Item("Longsword",27,12,0),
+            new Item("Sledgehammer",36,0,-15)
     };
     private Item[] legendaryItems = {
-            new Item("Rifle",35,0,-10),
-            new Item("Defender Sword",25,35,-5),
-            new Item("Karambit",20,0,20)
+            new Item("Rifle",50,0,-10),
+            new Item("Defender Sword",30,60,-5),
+            new Item("Karambit",35,0,20)
     };
     private String[] map = oldMapIcon;
     private boolean visited = false;
@@ -111,20 +111,20 @@ public class ItemRoom extends Room {
 
     public Item getRandomItem() {
         double decider = Math.random();
-        if (decider < 0.05) {
-            return legendaryItems[Runner.generateRandomInteger(0,2)]; //5%
+        if (decider < 0.1) {
+            return legendaryItems[Runner.generateRandomInteger(0,legendaryItems.length-1)]; // 10%
         }
-        else if (decider < 0.15) {
-            return epicItems[Runner.generateRandomInteger(0,2)]; // 10%
+        else if (decider < 0.26) {
+            return epicItems[Runner.generateRandomInteger(0,epicItems.length-1)]; // 16%
         }
-        else if (decider < 0.35) {
-            return rareItems[Runner.generateRandomInteger(0,2)]; //20%
+        else if (decider < 0.4) {
+            return rareItems[Runner.generateRandomInteger(0,rareItems.length-1)]; // 24%
         }
-        else if (decider < 0.65) {
-            return uncommonItems[Runner.generateRandomInteger(0,2)]; // 30%
+        else if (decider < 0.66) {
+            return uncommonItems[Runner.generateRandomInteger(0,uncommonItems.length-1)]; // 26%
         }
         else {
-            return commonItems[Runner.generateRandomInteger(0,2)]; // 35%
+            return commonItems[Runner.generateRandomInteger(0,commonItems.length-1)]; // 33%
         }
     }
 

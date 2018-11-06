@@ -166,10 +166,6 @@ public class Runner {
             roomIQ = nesw[randomAdjacentRoom];
             dungeon[roomIQ.yLoc][roomIQ.xLoc] = pickWhichRoomToPutIn(roomIQ.yLoc, roomIQ.xLoc);
             // Picks what type of room will be placed in this spot.
-            if (roomIQ.deadEnd()) {
-                break;
-                // And if the room is considered a "dead end", that will be the edge of one side.
-            }
         }
         // The other three copies of the code below are the exact same thing, in different directions.
         roomIQ = dungeon[5][6]; // Generate to the east.
@@ -191,9 +187,6 @@ public class Runner {
             }
             roomIQ = nesw[randomAdjacentRoom];
             dungeon[roomIQ.yLoc][roomIQ.xLoc] = pickWhichRoomToPutIn(roomIQ.yLoc, roomIQ.xLoc);
-            if (roomIQ.deadEnd()) {
-                break;
-            }
         }
 
         roomIQ = dungeon[6][5]; // South
@@ -215,9 +208,6 @@ public class Runner {
             }
             roomIQ = nesw[randomAdjacentRoom];
             dungeon[roomIQ.yLoc][roomIQ.xLoc] = pickWhichRoomToPutIn(roomIQ.yLoc, roomIQ.xLoc);
-            if (roomIQ.deadEnd()) {
-                break;
-            }
         }
 
         roomIQ = dungeon[5][4]; // West
@@ -239,8 +229,14 @@ public class Runner {
             }
             roomIQ = nesw[randomAdjacentRoom];
             dungeon[roomIQ.yLoc][roomIQ.xLoc] = pickWhichRoomToPutIn(roomIQ.yLoc, roomIQ.xLoc);
-            if (roomIQ.deadEnd()) {
-                break;
+
+        }
+        for (int i = 0; i < length; i ++) {
+            if (dungeon[0][i].isAnActualRoom()) {
+                dungeon[0][i] = new NotAPlaceYouCanReallyGoTo(0, i, true);
+            }
+            if (dungeon[i][0].isAnActualRoom()) {
+                dungeon[i][0] = new NotAPlaceYouCanReallyGoTo(i, 0, true);
             }
         }
         return dungeon;

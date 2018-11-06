@@ -19,13 +19,13 @@ public class Profile {
         this.name = name;
         this.xLoc = x;
         this.yLoc = y;
-        this.speed = Runner.generateRandomInteger(25,40);
+        this.speed = Runner.generateRandomInteger(10,25);
         this.strength = Runner.generateRandomInteger(25,35);
         this.defence = Runner.generateRandomInteger(25,35);
         this.maxHealth = maxHealth;
         health = maxHealth;
         this.monstersKilled = 0;
-        heldItem = new Item("nothing",0,0,15);
+        heldItem = new Item("nothing",0,0,5);
     }
 
     public Profile(String name, int maxHealth, int strength, int defence, int speed) {
