@@ -20,8 +20,8 @@ public class Profile {
         this.xLoc = x;
         this.yLoc = y;
         this.speed = Runner.generateRandomInteger(10,40);
-        this.strength = Runner.generateRandomInteger(15,35);
-        this.defence = Runner.generateRandomInteger(15,35);
+        this.strength = Runner.generateRandomInteger(25,35);
+        this.defence = Runner.generateRandomInteger(25,35);
         this.maxHealth = maxHealth;
         health = maxHealth;
         this.monstersKilled = 0;
