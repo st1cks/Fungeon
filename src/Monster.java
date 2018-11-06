@@ -10,12 +10,14 @@ public class Monster extends Profile {
 
     public void changeHealth(int change) {
         health += change;
-        if (health > maxHealth) {
-            System.out.println("The " + name + " recovers " + (change-(health - maxHealth)) + " health.");
-            health = maxHealth;
-        }
-        else {
-            System.out.println("The " + name + " recovers " + change + " health.");
+        if (change > 0) {
+            if (health > maxHealth) {
+                System.out.println("The " + name + " recovers " + (change-(health - maxHealth)) + " health.");
+                health = maxHealth;
+            }
+            else {
+                System.out.println("The " + name + " recovers " + change + " health.");
+            }
         }
         if (health <= 0) {
             die();
