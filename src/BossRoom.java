@@ -76,7 +76,13 @@ public class BossRoom extends Room {
                 }
                 if (input.equals("i")) {
                     System.out.println("You observe the " + boss.returnName() + " as it attacks you!");
-                    // ghere
+                    damageToPlayer = Runner.generateRandomInteger((int) (4.0 * bossStrength), (int) (8.0 * bossStrength));
+                    z.changeHealth(-damageToPlayer);
+                    System.out.println("You suffered " + damageToPlayer + " damage, but you were somewhat ready for the attack.");
+                    System.out.println("Name: " + boss.returnName());
+                    System.out.println("Strength " + boss.returnStat(1));
+                    System.out.println("Defence: " + boss.returnStat(2));
+                    System.out.println("Speed: " + boss.returnStat(0));
                 }
             }
             if (bossInput.equals("d")) {
@@ -124,13 +130,19 @@ public class BossRoom extends Room {
                 }
                 if (!z.returnDeathStatus()) {
                     if (input.equals("a")) {
-
+                        damageToBoss = Runner.generateRandomInteger((int) (10.0 * playerStrength),(int) (20.0 * playerStrength));
+                        boss.changeHealth(-damageToBoss);
+                        System.out.println("You take your opportunity to strike, dealing " + damageToBoss + " damage!");
                     }
                     if (input.equals("d")) {
-
+                        z.changeHealth(playerHealPower);
                     }
                     if (input.equals("i")) {
-
+                        System.out.println("You take a good look at the " + boss.returnName() + ".");
+                        System.out.println("Name: " + boss.returnName());
+                        System.out.println("Strength " + boss.returnStat(1));
+                        System.out.println("Defence: " + boss.returnStat(2));
+                        System.out.println("Speed: " + boss.returnStat(0));
                     }
                 }
             }
