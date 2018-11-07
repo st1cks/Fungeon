@@ -37,9 +37,6 @@ public class EmptyRoom extends Room {
             return map;
         }
     }
-    public void changeMapVisiblity(boolean mapVisibility) {
-        hidden = !mapVisibility;
-    }
 
     public boolean enterRoom(Profile z) {
         occupant = z;

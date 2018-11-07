@@ -33,10 +33,6 @@ public class Room {
         xLoc = x; yLoc = y; this.hidden = hidden;
     }
 
-    public void changeMapVisiblity(boolean mapVisibility) {
-        hidden = !mapVisibility;
-    }
-
     public boolean enterRoom(Profile z) {
         occupant = z;
         z.setLocation(yLoc, xLoc);

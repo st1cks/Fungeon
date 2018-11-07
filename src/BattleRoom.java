@@ -59,7 +59,7 @@ public class BattleRoom extends Room {
         }
     }
 
-    public boolean battle(Profile z, Monster monster) {
+    public static boolean battle(Profile z, Monster monster) {
         boolean concluded = false;
         while (!concluded && !z.returnDeathStatus()) {
             int damageToMonster, damageToPlayer;
@@ -70,7 +70,7 @@ public class BattleRoom extends Room {
 
             Scanner in = new Scanner(System.in);
             String input = in.nextLine();
-            input = input.trim().toLowerCase();
+            input.trim().toLowerCase();
 
             String monsterInput = monster.makeChoice();
             if (monster.health == monster.maxHealth) {
@@ -192,10 +192,6 @@ public class BattleRoom extends Room {
         else {
             return map;
         }
-    }
-
-    public void changeMapVisiblity(boolean mapVisibility) {
-        hidden = !mapVisibility;
     }
     public boolean deadEnd() {
         return false;

@@ -131,9 +131,6 @@ public class ItemRoom extends Room {
     public void leaveRoom() {
         map = oldMapIcon;
     }
-    public void changeMapVisiblity(boolean mapVisibility) {
-        hidden = !mapVisibility;
-    }
 
     public boolean deadEnd() {
         return true;
