@@ -42,7 +42,6 @@ public class BattleRoom extends Room {
     }
 
     public boolean enterRoom(Profile z) {
-
         map = newMapIcon;
         occupant = z;
         z.setLocation(yLoc, xLoc);
@@ -71,7 +70,7 @@ public class BattleRoom extends Room {
 
             Scanner in = new Scanner(System.in);
             String input = in.nextLine();
-            input.toLowerCase().trim();
+            input = input.trim().toLowerCase();
 
             String monsterInput = monster.makeChoice();
             if (monster.health == monster.maxHealth) {
