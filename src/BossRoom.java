@@ -70,10 +70,13 @@ public class BossRoom extends Room {
                 }
                 if (input.equals("d")) {
                     System.out.println("You took a defensive stance, but you're ready to absorb the blow of the " + boss.returnName() + "!");
-
+                    damageToPlayer = Runner.generateRandomInteger((int) (3.0 * bossStrength), (int) (7.0 * bossStrength));
+                    z.changeHealth(-damageToPlayer);
+                    System.out.println("You suffered " + damageToPlayer + " damage.");
                 }
                 if (input.equals("i")) {
-
+                    System.out.println("You observe the " + boss.returnName() + " as it attacks you!");
+                    // ghere
                 }
             }
             if (bossInput.equals("d")) {
