@@ -195,6 +195,15 @@ public class Runner {
             System.out.println(" #     #  #     #  #     #  #                   #     #     # #    #        #   #   ");
             System.out.println("  #####   #     #  #     #  ######               #####       #     #######  #    #  ");
         }
+        else {
+            System.out.println(" #     #   #####   #     #          #       #   #####  #     # ");
+            System.out.println("  #   #   #     #  #     #          #       #     #    ##    # ");
+            System.out.println("   # #    #     #  #     #          #       #     #    # #   # ");
+            System.out.println("    #     #     #  #     #          #       #     #    #  #  # ");
+            System.out.println("    #     #     #  #     #          #   #   #     #    #   # # ");
+            System.out.println("    #     #     #  #     #           # # # #      #    #    ## ");
+            System.out.println("    #      #####    #####             #   #     #####  #     # ");
+        }
 
 
     }
