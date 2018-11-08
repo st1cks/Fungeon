@@ -31,12 +31,14 @@ public class StartingRoom extends Room {
     public boolean enterRoom(Profile z) {
         occupant = z;
         z.setLocation(yLoc, xLoc);
+        z.changeHealth(10000);
         map = newMapIcon;
         if (visited) {
             System.out.println("You're at the starting room, and you don't know where to go.");
+            visited = true;
         }
         else {
-            System.out.println("Back at the start.");
+            System.out.println("The warmth and familiarity of the starting room restores all of your health!");
         }
         return false;
     }

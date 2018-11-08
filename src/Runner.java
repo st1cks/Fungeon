@@ -25,7 +25,48 @@ public class Runner {
         System.out.println("Welcome, enter your name.");
         Scanner in = new Scanner(System.in);
         String input = in.nextLine();
-
+        String[] tutorial = {
+                "Welcome to Fungeon, a randomly generated turn-based dungeon game where you must explore the dungeon room by room to reach the boss room.",
+                "Every room will start off hidden until you explore it. The boss room is visible on the map at all times, which is your goal.",
+                "You navigate the world using n, e, s, and w, to explore north, east, west, and south. Your compass on the left will tell you your options, in addition to the main screen.",
+                "If there is a wall in any direction, you would not be able to travel through.",
+                "There are five different types of rooms total in Fungeon.",
+                "You start off in the Starting Room. There is nothing here, but if you return to this room, all of your health will be restored.",
+                "An item room will give you the option to take or ignore a random item of a certain rarity.",
+                "An empty room is empty.",
+                "A battle room will give you an encounter with a random enemy.",
+                "During a battle, all of your stats will be factored into different aspects of the battle. Your strength will scale with the damage that you or your enemies deal, while defence of an opponent inversely scales with it.",
+                "Your speed will determine your chance of successfully fleeing from a battle. It is compared to an enemy's speed.",
+                "During a battle, you may choose to attack with a, defend and restore some health with d, inspect the enemy and view their stats with i, view your own stats with t, or attempt to flee with r.",
+                "All of these actions will count as a turn EXCEPT for viewing your own stats. If you fail to flee, you will take extra damage if the enemy attacks.",
+                "If you defeat an enemy in battle, the room will become safe for the remainder of the game and your stats may increase. If you flee, only the room will be safe.",
+                "The more enemies you defeat, the stronger they get, so choose your fights wisely.",
+                "The final room that has yet to be mentioned is the boss room. In here, you will fight an enemy with increased health and other stats. You will not be able to flee from this battle.",
+                "Do NOT try to flee from a boss fight.",
+                "The boss will have the ability to use special attacks.",
+                "If you get lost while exploring, you can always use m to check the map, or t to check your own stats.",
+                "Battle rooms will be marked with a B, Item rooms are marked with a T (as in treasure), the starting room will be marked with an S, and X marks the boss room.",
+                "Good luck."
+        };
+        boolean tutorialEnded = false;
+        while (!tutorialEnded) {
+            System.out.println("Would you like to take the tutorial? (y/n)");
+            in = new Scanner(System.in);
+            input = in.nextLine();
+            input.toLowerCase().trim();
+            if (input.equals("y")) {
+                tutorialEnded = true;
+                System.out.println("Press enter after each line to continue.");
+                for (int i = 0; i < tutorial.length; i++) {
+                    System.out.println(tutorial[i]);
+                    in = new Scanner(System.in);
+                    input = in.nextLine();
+                }
+            }
+            if (input.equals("n")) {
+                tutorialEnded = true;
+            }
+        }
 
         int fieldLength = 11; int fieldWidth = 11;
         Profile you = new Profile(input, fieldLength/2, fieldLength/2, 100);
@@ -282,13 +323,13 @@ public class Runner {
         }
         int adjacentRooms = 0;
         while (adjacentRooms == 0) {
+            roomIQ = dungeon[generateRandomInteger(2,dungeon.length-2)][generateRandomInteger(2,dungeon[0].length-2)];
             boolean[] neswBoolean = {
                     dungeon[roomIQ.yLoc-1][roomIQ.xLoc].isAnActualRoom(), // 1 space north of the room "In Question"
                     dungeon[roomIQ.yLoc][roomIQ.xLoc+1].isAnActualRoom(), // 1 space east of the room "In Question"
                     dungeon[roomIQ.yLoc+1][roomIQ.xLoc].isAnActualRoom(), // S.O.
                     dungeon[roomIQ.yLoc][roomIQ.xLoc-1].isAnActualRoom()
             };
-            roomIQ = dungeon[generateRandomInteger(2,dungeon.length-2)][generateRandomInteger(2,dungeon[0].length-2)];
             adjacentRooms = 0;
             for (int i = 1; i < neswBoolean.length; i ++) {
                 if (neswBoolean[i]) {

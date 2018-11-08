@@ -30,7 +30,7 @@ public class BossRoom extends Room {
             System.out.println("=============================================================================");
             System.out.println("HP: " + z.health + " / " + z.maxHealth);
             System.out.println(boss.returnName() + "'s HP: " + boss.health + " / " + boss.maxHealth);
-            System.out.println("What do you do? (A)ttack/(D)efend/(I)nspect/S(T)ats");
+            System.out.println("What do you do? (A)ttack/(D)efend/(I)nspect/S(T)ats/(R)un");
 
             Scanner in = new Scanner(System.in);
             String input = in.nextLine();
@@ -147,7 +147,6 @@ public class BossRoom extends Room {
                     }
                 }
             }
-
             else {
                 if (bossInput.equals("a")) {
                     if (input.equals("a")) {

@@ -45,6 +45,7 @@ public class EmptyRoom extends Room {
         map = newMapIcon;
         if (!visited) {
             System.out.println("Wow, this room has nothing in it.");
+            visited = true;
         }
         else {
             System.out.println("I can't believe it! There's still nothing in this room!");
