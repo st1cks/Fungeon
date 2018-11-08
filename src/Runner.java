@@ -29,10 +29,10 @@ public class Runner {
                 "Welcome to Fungeon, a randomly generated turn-based dungeon game where you must explore the dungeon room by room to reach the boss room.",
                 "Every room will start off hidden until you explore it. The boss room is visible on the map at all times, which is your goal.",
                 "You navigate the world using n, e, s, and w, to explore north, east, west, and south. Your compass on the left will tell you your options, in addition to the main screen.",
-                "If there is a wall in any direction, you would not be able to travel through.",
+                "If there is a wall in any direction, you would not be able to travel through. You gain a bit of health over time as you travel between rooms.",
                 "There are five different types of rooms total in Fungeon.",
                 "You start off in the Starting Room. There is nothing here, but if you return to this room, all of your health will be restored.",
-                "An item room will give you the option to take or ignore a random item of a certain rarity.",
+                "An item room will give you the option to take or ignore a random item of a certain rarity. They spawn less frequently than battle rooms. Since this is randomly generated, you might not even be able to encounter one.",
                 "An empty room is empty.",
                 "A battle room will give you an encounter with a random enemy.",
                 "During a battle, all of your stats will be factored into different aspects of the battle. Your strength will scale with the damage that you or your enemies deal, while defence of an opponent inversely scales with it.",
@@ -346,11 +346,11 @@ public class Runner {
     }
 
     public static Room pickWhichRoomToPutIn(int y, int x) {
-        int decider = generateRandomInteger(0,5);
-        if (decider == 5) {
+        int decider = generateRandomInteger(0,9);
+        if (decider < 2) {
             return new ItemRoom(y, x, true);
         }
-        else if (decider < 1) {
+        else if (decider < 4) {
             return new EmptyRoom(y, x, true);
         }
         else {
