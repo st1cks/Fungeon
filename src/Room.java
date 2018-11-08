@@ -54,7 +54,7 @@ public class Room {
         }
     }
 
-    public boolean deadEnd() {
+    public boolean bossRoom() {
         return false;
     }
     public boolean isAnActualRoom() {

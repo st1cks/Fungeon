@@ -56,7 +56,7 @@ public class EmptyRoom extends Room {
         map = oldMapIcon;
     }
 
-    public boolean deadEnd() {
+    public boolean bossRoom() {
         return false;
     }
     public boolean isAnActualRoom() {

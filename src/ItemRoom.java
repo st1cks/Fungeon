@@ -132,8 +132,8 @@ public class ItemRoom extends Room {
         map = oldMapIcon;
     }
 
-    public boolean deadEnd() {
-        return true;
+    public boolean bossRoom() {
+        return false;
     }
     public boolean isAnActualRoom() {
         return true;

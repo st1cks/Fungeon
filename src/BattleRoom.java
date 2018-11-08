@@ -170,6 +170,7 @@ public class BattleRoom extends Room {
         if (monster.returnDeathStatus()) {
             System.out.println("You defeated the " + monster.returnName() + "!");
             z.changeStats((int)(Math.random() * (z.returnStat(0) * 0.25)),(int)(Math.random() * (z.returnStat(0) * 0.25)),(int)(Math.random() * (z.returnStat(0) * 0.25)));
+            z.maxHealth = (int) (z.maxHealth * 1.08);
             System.out.println("You feel yourself get a little stronger after that battle.");
             z.monstersKilled ++;
         }
@@ -193,7 +194,7 @@ public class BattleRoom extends Room {
             return map;
         }
     }
-    public boolean deadEnd() {
+    public boolean bossRoom() {
         return false;
     }
     public boolean isAnActualRoom() {

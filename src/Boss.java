@@ -28,11 +28,11 @@ public class Boss extends Profile {
     }
 
     public void scaleStats(int monstersKilled) {
-        this.maxHealth = (int) (maxHealth * (1 + (monstersKilled * 0.10)));
+        this.maxHealth = (int) (maxHealth * (1 + (monstersKilled * 0.05)));
         health = maxHealth;
-        this.strength = (int) (strength * (1 + (monstersKilled * 0.15)));
-        this.defence = (int) (defence * (1 + (monstersKilled * 0.15)));
-        this.speed = (int) (speed * (1 + (monstersKilled * 0.10)));
+        this.strength = (int) (strength * (1 + (monstersKilled * 0.05)));
+        this.defence = (int) (defence * (1 + (monstersKilled * 0.05)));
+        this.speed = (int) (speed * (1 + (monstersKilled * 2)));
     }
 
     public int returnStat(int statId) {

@@ -36,11 +36,12 @@ public class Runner {
             walkIntoWall = false;
             int xLoc = you.returnLocation()[1];
             int yLoc = you.returnLocation()[0];
-            boolean n, e, s, w;
-            n = field[xLoc][yLoc-1].isAnActualRoom();
-            e = field[xLoc+1][yLoc].isAnActualRoom();
-            s = field[xLoc][yLoc+1].isAnActualRoom();
-            w = field[xLoc-1][yLoc].isAnActualRoom();
+            boolean enterBossRoom;
+            Room n, e, s, w;
+            n = field[xLoc][yLoc-1];
+            e = field[xLoc+1][yLoc];
+            s = field[xLoc][yLoc+1];
+            w = field[xLoc-1][yLoc];
             printGUI(n, e, s, w);
 
 
@@ -51,34 +52,74 @@ public class Runner {
                 printMap(field, you);
             }
             if (input.equals("n")) {
-                if (n) {
-                    field[xLoc][yLoc].leaveRoom();
-                    you.changeHealth((int)(you.health * 0.2));
-                    gameEnd = field[xLoc][yLoc - 1].enterRoom(you);
+                if (n.isAnActualRoom()) {
+                    if (n.bossRoom()) {
+                        enterBossRoom = warnPlayerOfImpedingDoom();
+                        if (enterBossRoom) {
+                            field[xLoc][yLoc].leaveRoom();
+                            you.changeHealth((int) (you.health * 0.2));
+                            gameEnd = n.enterRoom(you);
+                        }
+                    }
+                    else {
+                        field[xLoc][yLoc].leaveRoom();
+                        you.changeHealth((int) (you.health * 0.2));
+                        gameEnd = n.enterRoom(you);
+                    }
                 }
                 else {walkIntoWall = true;}
             }
             if (input.equals("e")) {
-                if (e) {
-                    field[xLoc][yLoc].leaveRoom();
-                    you.changeHealth((int)(you.health * 0.2));
-                    gameEnd = field[xLoc + 1][yLoc].enterRoom(you);
+                if (e.isAnActualRoom()) {
+                    if (e.bossRoom()) {
+                        enterBossRoom = warnPlayerOfImpedingDoom();
+                        if (enterBossRoom) {
+                            field[xLoc][yLoc].leaveRoom();
+                            you.changeHealth((int) (you.health * 0.2));
+                            gameEnd = e.enterRoom(you);
+                        }
+                    }
+                    else {
+                        field[xLoc][yLoc].leaveRoom();
+                        you.changeHealth((int) (you.health * 0.2));
+                        gameEnd = e.enterRoom(you);
+                    }
                 }
                 else {walkIntoWall = true;}
             }
             if (input.equals("s")) {
-                if (s) {
-                    field[xLoc][yLoc].leaveRoom();
-                    you.changeHealth((int)(you.health * 0.2));
-                    gameEnd = field[xLoc][yLoc + 1].enterRoom(you);
+                if (s.isAnActualRoom()) {
+                    if (s.bossRoom()) {
+                        enterBossRoom = warnPlayerOfImpedingDoom();
+                        if (enterBossRoom) {
+                            field[xLoc][yLoc].leaveRoom();
+                            you.changeHealth((int) (you.health * 0.2));
+                            gameEnd = s.enterRoom(you);
+                        }
+                    }
+                    else {
+                        field[xLoc][yLoc].leaveRoom();
+                        you.changeHealth((int) (you.health * 0.2));
+                        gameEnd = s.enterRoom(you);
+                    }
                 }
                 else {walkIntoWall = true;}
             }
             if (input.equals("w")) {
-                if (w) {
-                    field[xLoc][yLoc].leaveRoom();
-                    you.changeHealth((int)(you.health * 0.2));
-                    gameEnd = field[xLoc - 1][yLoc].enterRoom(you);
+                if (w.isAnActualRoom()) {
+                    if (w.bossRoom()) {
+                        enterBossRoom = warnPlayerOfImpedingDoom();
+                        if (enterBossRoom) {
+                            field[xLoc][yLoc].leaveRoom();
+                            you.changeHealth((int) (you.health * 0.2));
+                            gameEnd = w.enterRoom(you);
+                        }
+                    }
+                    else {
+                        field[xLoc][yLoc].leaveRoom();
+                        you.changeHealth((int) (you.health * 0.2));
+                        gameEnd = w.enterRoom(you);
+                    }
                 }
                 else {walkIntoWall = true;}
             }
@@ -239,6 +280,23 @@ public class Runner {
                 dungeon[i][0] = new NotAPlaceYouCanReallyGoTo(i, 0, true);
             }
         }
+        int adjacentRooms = 0;
+        while (adjacentRooms == 0) {
+            boolean[] neswBoolean = {
+                    dungeon[roomIQ.yLoc-1][roomIQ.xLoc].isAnActualRoom(), // 1 space north of the room "In Question"
+                    dungeon[roomIQ.yLoc][roomIQ.xLoc+1].isAnActualRoom(), // 1 space east of the room "In Question"
+                    dungeon[roomIQ.yLoc+1][roomIQ.xLoc].isAnActualRoom(), // S.O.
+                    dungeon[roomIQ.yLoc][roomIQ.xLoc-1].isAnActualRoom()
+            };
+            roomIQ = dungeon[generateRandomInteger(2,dungeon.length-2)][generateRandomInteger(2,dungeon[0].length-2)];
+            adjacentRooms = 0;
+            for (int i = 1; i < neswBoolean.length; i ++) {
+                if (neswBoolean[i]) {
+                    adjacentRooms ++;
+                }
+            }
+        }
+        dungeon[roomIQ.yLoc][roomIQ.xLoc] = new BossRoom(roomIQ.yLoc, roomIQ.xLoc,false);
         return dungeon;
     }
 
@@ -311,7 +369,7 @@ public class Runner {
         System.out.println("You are located in " + profile.returnLocation()[1] + ", " + profile.returnLocation()[0]);
     }
 
-    public static void printGUI(boolean n, boolean e, boolean s, boolean w) {
+    public static void printGUI(Room n, Room e, Room s, Room w) {
         String[] GUI = {
                 "       NORTH       ||", // 21 characters long
                 "         ^         ||",
@@ -328,25 +386,25 @@ public class Runner {
                 "  (W)est",
                 "  You can also check the (M)ap, or your S(T)ats."
         };
-        if (!n) {
+        if (!n.isAnActualRoom()) {
             GUI[0] = "                   ||";
             GUI[1] = "                   ||";
             overworld[1] = "";
         }
-        if (!w && !e) {
+        if (!w.isAnActualRoom() && !e.isAnActualRoom()) {
             GUI[2] = "                   ||";
             overworld[2] = "";
             overworld[4] = "";
         }
-        if (!w && e) {
+        if (!w.isAnActualRoom() && e.isAnActualRoom()) {
             GUI[2] = "          >  EAST  ||";
             overworld[4] = "";
         }
-        if (!e && w) {
+        if (!e.isAnActualRoom() && w.isAnActualRoom()) {
             GUI[2] = "  WEST  <          ||";
             overworld[2] = "";
         }
-        if (!s) {
+        if (!s.isAnActualRoom()) {
             GUI[3] = "                   ||";
             GUI[4] = "                   ||";
             overworld[3] = "";
@@ -356,6 +414,25 @@ public class Runner {
             System.out.println(GUI[i] + overworld[i]);
         }
 
+    }
+    public static boolean warnPlayerOfImpedingDoom() {
+        System.out.println("WARNING: The room you are about to enter is a Boss Room. Do you wish to enter? (y/n)");
+        Scanner input = new Scanner(System.in);
+        String in = input.nextLine();
+        in.toLowerCase().trim();
+        while (!in.equals("y") && !in.equals("n")) {
+            System.out.println("WARNING: The room you are about to enter is a Boss Room. Do you wish to enter? (y/n)");
+            input = new Scanner(System.in);
+            in = input.nextLine();
+            in.toLowerCase().trim();
+        }
+        if (in.equals("y")) {
+            return true;
+        }
+        else {
+            System.out.println("You hesitate, and end up staying in your current room.");
+            return false;
+        }
     }
 
 }
