@@ -53,7 +53,7 @@ public class Boss extends Profile {
 
     public String makeChoice() {
         int random = Runner.generateRandomInteger(0,8);
-        int randomSpecial = Runner.generateRandomInteger(0,2);
+        int randomSpecial = Runner.generateRandomInteger(0,3);
         if (random < 3) {
             return "a";
         }
