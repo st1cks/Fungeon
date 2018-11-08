@@ -222,8 +222,8 @@ public class BossRoom extends Room {
                         boolean died = BattleRoom.battle(z, monster);
                         System.out.println("=============================================================================");
                         if (!died) {
+                            System.out.println("You absorb the " + monster.returnName() + "'s powers and gain health.");
                             z.changeHealth((int) (monster.maxHealth * 0.25));
-                            System.out.println("You absorb the " + monster.returnName() + "'s powers and gain " + (int) (monster.maxHealth * 0.25) + " health.");
                         }
                     }
                     if (bossInput.equals("s3")) {
