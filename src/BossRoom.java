@@ -203,7 +203,7 @@ public class BossRoom extends Room {
                         System.out.println("Speed: " + boss.returnStat(0));
                     }
                 }
-                if (bossInput.equals("s1") || bossInput.equals("s2") || bossInput.equals("s3")) {
+                if (bossInput.equals("s1") || bossInput.equals("s2") || bossInput.equals("s3") || bossInput.equals("s4")) {
                     if (bossInput.equals("s1")) {
                         System.out.println("The " + boss.returnName() + " is about to do a special attack!");
                         System.out.println("The " + boss.returnName() + " lowered some of your stats!");
@@ -230,6 +230,11 @@ public class BossRoom extends Room {
                         System.out.println("The " + boss.returnName() + " is about to do a special attack!");
                         boss.changeStats((int) (boss.returnStat(0) * 0.09), (int) (boss.returnStat(1) * 0.09), (int) (boss.returnStat(2) * 0.09));
                         System.out.println("The " + boss.returnName() + " increases some of its stats!");
+                    }
+                    if (bossInput.equals("s4")) {
+                        System.out.println("The " + boss.returnName() + " is about to do a special attack!");
+                        System.out.println("The " + boss.returnName() + " lowered your life force! Your maximum health went down.");
+                        z.maxHealth = (int) (z.maxHealth * 0.85);
                     }
                     if (!z.returnDeathStatus()) {
                         if (input.equals("a")) {

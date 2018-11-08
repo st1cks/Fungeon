@@ -52,7 +52,7 @@ public class Boss extends Profile {
     }
 
     public String makeChoice() {
-        int random = Runner.generateRandomInteger(0,7);
+        int random = Runner.generateRandomInteger(0,8);
         int randomSpecial = Runner.generateRandomInteger(0,2);
         if (random < 3) {
             return "a";
@@ -67,8 +67,11 @@ public class Boss extends Profile {
             if (randomSpecial == 1) {
                 return "s2"; // Special 2: Summon an enemy.
             }
-            else {
+            if (randomSpecial == 2) {
                 return "s3"; // Special 3: Buff own stats.
+            }
+            else {
+                return "s4"; // Special 4: Lowers player max HP
             }
         }
     }
