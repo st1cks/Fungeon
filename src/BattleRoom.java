@@ -59,7 +59,7 @@ public class BattleRoom extends Room {
         }
     }
 
-    public static boolean battle(Profile z, Monster monster) {
+    public static boolean battle(Profile z, Monster monster) { // I kept this method seperate from the enterRoom itself so that I can refer to it when the boss summons a disciple.
         boolean concluded = false;
         while (!concluded && !z.returnDeathStatus()) {
             int damageToMonster, damageToPlayer;
@@ -86,7 +86,10 @@ public class BattleRoom extends Room {
                 playerStrength = 1.0;
             }
             double monsterHealPower = (double) (monster.health * 0.15);
-            double playerHealPower = (double) (z.health * 0.18);
+            double playerHealPower = (double) (z.health * 0.18); // I calculated all of this beforehand so I don't have to write this shit every time I need to refer to it
+            // SO IN ESSENCE: The damage against regular enemies is a range of numbers based on the strength the person has over the opponent's defence.
+            // The player has a higher heal power so that monsters don't just spam defend to recover health. However, this means that the lower the health is, the less effective the recovery.
+
             if (input.equals("t")) {
                     System.out.println("Name: " + z.returnName());
                     System.out.println("Health: " + z.health + " / " + z.maxHealth);
