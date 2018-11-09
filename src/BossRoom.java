@@ -50,7 +50,7 @@ public class BossRoom extends Room {
             }
             double bossStrength = (double)(boss.returnStat(1) / z.returnCalculatedStats(2));
             double playerStrength = (double)(z.returnCalculatedStats(1) / boss.returnStat(2));
-            int playerHealPower = (int) (z.health * 0.25);
+            int playerHealPower = (int) (z.health * 0.25); // I calculated all of this beforehand so I don't have to write this shit every time I need to refer to it
 
             if (bossStrength < 1.0) {
                 bossStrength = 1.0;
