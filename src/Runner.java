@@ -24,7 +24,7 @@ public class Runner {
         System.out.println("WARNING: The map only works right if you have the right font. In IntelliJ, go to File>Settings>Editor>Font>Change Font to Consolas");
         System.out.println("Welcome, enter your name.");
         Scanner in = new Scanner(System.in);
-        String input = in.nextLine();
+        String input = in.nextLine(); // I put in a blank scanner so that the player can type anything they want and the dialogue will progress.
         String[] tutorial = {
                 "Welcome to Fungeon, a randomly generated turn-based dungeon game where you must explore the dungeon room by room to reach the boss room.",
                 "Every room will start off hidden until you explore it. The boss room is visible on the map at all times, which is your goal.",
@@ -48,7 +48,7 @@ public class Runner {
                 "Battle rooms will be marked with a B, Item rooms are marked with a T (as in treasure), the starting room will be marked with an S, and X marks the boss room.",
                 "Good luck."
         };
-        boolean tutorialEnded = false;
+        boolean tutorialEnded = false; // If the player says "n", then the question ends and it just goes straight to the game.
         while (!tutorialEnded) {
             System.out.println("Would you like to take the tutorial? (y/n)");
             in = new Scanner(System.in);

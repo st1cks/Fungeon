@@ -1,3 +1,11 @@
+/**
+ * JESSE HAN
+ * AP JAVA PERIOD 4, 5
+ * MR FOLWELL'S CLASS
+ * I MADE THIS
+ * IT TOOK A WHILE
+ **/
+
 public class Board {
 
     private Room[][] dungeon;
@@ -119,7 +127,7 @@ public class Board {
                 dungeon[i][0] = new NotAPlaceYouCanReallyGoTo(i, 0, true);
             }
         }
-        int adjacentRooms = 0;
+        int adjacentRooms = 0; // Start of creating the boss room location.
         while (adjacentRooms == 0) {
             roomIQ = dungeon[Runner.generateRandomInteger(2,dungeon.length-2)][Runner.generateRandomInteger(2,dungeon[0].length-2)];
             boolean[] neswBoolean = {
@@ -128,11 +136,14 @@ public class Board {
                     dungeon[roomIQ.yLoc+1][roomIQ.xLoc].isAnActualRoom(), // S.O.
                     dungeon[roomIQ.yLoc][roomIQ.xLoc-1].isAnActualRoom()
             };
-            adjacentRooms = 0;
+            adjacentRooms = 0; // The boss room will ALWAYS be adjacent to at least one room.
             for (int i = 1; i < neswBoolean.length; i ++) {
                 if (neswBoolean[i]) {
                     adjacentRooms ++;
                 }
+            }
+            if (roomIQ.xLoc == dungeon.length/2 && roomIQ.yLoc == dungeon.length/2) { // Prevents boss room from spawning on the starting room.
+                adjacentRooms = 0;
             }
         }
         dungeon[roomIQ.yLoc][roomIQ.xLoc] = new BossRoom(roomIQ.yLoc, roomIQ.xLoc,false);
@@ -155,13 +166,9 @@ public class Board {
         return dungeon[x][y];
     }
 
-    public Room[][] returnField() {
-        return dungeon;
-    }
-
     public void printMap(Profile profile) {
         String x = "  ";
-        for (int i = 0; i < dungeon.length; i ++) {
+        for (int i = 0; i < dungeon.length; i ++) { // Makes borders dependent on map size, to make the generation process flexible.
             x += i + "   ";
         }
         System.out.println(x);

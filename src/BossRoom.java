@@ -1,3 +1,11 @@
+/**
+ * JESSE HAN
+ * AP JAVA PERIOD 4, 5
+ * MR FOLWELL'S CLASS
+ * I MADE THIS
+ * IT TOOK A WHILE
+ **/
+
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -162,6 +170,7 @@ public class BossRoom extends Room {
                     }
                     if (input.equals("d")) {
                         System.out.println("You took a defensive stance, but you're ready to absorb the blow of the " + boss.returnName() + "!");
+                        z.changeHealth(playerHealPower);
                         damageToPlayer = Runner.generateRandomInteger((int) (3.0 * bossStrength), (int) (7.0 * bossStrength));
                         z.changeHealth(-damageToPlayer);
                         System.out.println("You suffered " + damageToPlayer + " damage.");
