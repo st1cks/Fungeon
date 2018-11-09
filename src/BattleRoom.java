@@ -109,6 +109,7 @@ public class BattleRoom extends Room {
                             System.out.println("You slap the " + monster.returnName() + " very hard! You deal " + damageToMonster + " damage.");
                         } else {
                             System.out.println("You attack the " + monster.returnName() + " with your " + z.returnItem().name + ", dealing " + damageToMonster + " damage!");
+                            // Because it wouldn't make sense to say that you attack someone with "[their] nothing".
                         }
                         if (!monster.returnDeathStatus()) {
                             z.changeHealth(-damageToPlayer);
