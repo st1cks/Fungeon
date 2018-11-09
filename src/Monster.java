@@ -60,7 +60,7 @@ public class Monster extends Profile {
         }
     }
 
-    public String makeChoice() {
+    public String makeChoice() { // Monster is nearly identical to profile except for the choice, which is made by this method.
         int random = Runner.generateRandomInteger(0,4);
         if (random < 2) {
             return "a";

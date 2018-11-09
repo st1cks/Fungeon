@@ -45,7 +45,7 @@ public class Profile {
         heldItem = item;
     }
 
-    public void changeHealth(int change) {
+    public void changeHealth(int change) { // Defending players will recover HP, by the way.
         health += change;
         if (change > 0) {
             if (health > maxHealth) {
@@ -82,7 +82,7 @@ public class Profile {
         yLoc += y;
     }
 
-    public int returnCalculatedStats(int statId) {
+    public int returnCalculatedStats(int statId) { // Return stats + bonuses from items
         if (statId == 0) {
             return speed + returnItem().speedBonus;
         }
@@ -108,7 +108,7 @@ public class Profile {
         return z;
     }
 
-    public int returnStat(int statId) {
+    public int returnStat(int statId) { // 0 = speed, 1 = strength, 2 = defence. this way i won't have to make like 3 different methods for the same purpose.
         if (statId == 0) {
             return speed;
         }

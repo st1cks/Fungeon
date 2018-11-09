@@ -109,7 +109,7 @@ public class ItemRoom extends Room {
         }
     }
 
-    public Item getRandomItem() {
+    public Item getRandomItem() { // Takes a random group of items based on chance, and a random item from that group.
         double decider = Math.random();
         if (decider < 0.1) {
             return legendaryItems[Runner.generateRandomInteger(0,legendaryItems.length-1)]; // 10%

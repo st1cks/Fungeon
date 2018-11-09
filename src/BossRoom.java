@@ -29,7 +29,7 @@ public class BossRoom extends Room {
         map = newMapIcon;
         visited = true;
         z.setLocation(yLoc, xLoc);
-        Boss boss = new Boss("Lord of the Bad People",250,60,60,100);
+        Boss boss = new Boss("Lord of the Bad People",250,60,60,100); // I couldn't think of a good name, ok?
         boss.scaleStats(z.getMonstersKilled());
         z.changeStats((int) (z.returnStat(0) * 0.50), (int) (z.returnStat(1) * 0.50), (int) (z.returnStat(2) * 0.50));
         System.out.println("The door shuts behind you, and you are now locked in a battle with " + boss.returnName() + ".");
@@ -68,7 +68,7 @@ public class BossRoom extends Room {
                     System.out.println("Item: " + z.returnItem().name);
                 }
                 else {
-                    z.changeHealth(-1000000);
+                    z.changeHealth(-1000000); // So yeah. Don't run, this is why.
                     System.out.println("                             ,..oooooooooob..\n" +
                             "                       ,.dodOOOO\"\"\"\"\"\":\"ooPO88bo..\n" +
                             "                     .o8O\"\"\" '            \"'\"\"\"PO8b.\n" +
@@ -139,16 +139,16 @@ public class BossRoom extends Room {
                     // Courtesy of https://asciiart.website/
                     // This ASCII pic can be found at https://asciiart.website/index.php?art=people/skeletons
                     try {
-                        Thread.sleep(3000);
+                        Thread.sleep(3000); // wait for 3s
                     }
                     catch(InterruptedException ex) {
                         Thread.currentThread().interrupt();
                     }
                     for (int i = 0; i < 500; i ++) {
-                        System.out.println("WHO ARE YOU RUNNING FROM?");
+                        System.out.println("WHO ARE YOU RUNNING FROM?"); // print this message 500 times
                     }
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(5000); // another 5s
                     }
                     catch(InterruptedException ex) {
                         Thread.currentThread().interrupt();
@@ -244,6 +244,9 @@ public class BossRoom extends Room {
                         System.out.println("The " + boss.returnName() + " is about to do a special attack!");
                         System.out.println("The " + boss.returnName() + " lowered your life force! Your maximum health went down.");
                         z.maxHealth = (int) (z.maxHealth * 0.85);
+                        if (z.health > z.maxHealth) {
+                            z.health = z.maxHealth;
+                        }
                     }
                     if (!z.returnDeathStatus()) {
                         if (input.equals("a")) {

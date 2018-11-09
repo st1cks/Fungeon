@@ -74,7 +74,7 @@ public class Runner {
         // Room[][] field = board.returnField();
 
 
-        while (!gameEnd) {
+        while (!gameEnd) { // Loop prompts until the player dies or the game otherwise ends for a different reason.
             walkIntoWall = false;
             int xLoc = you.returnLocation()[1];
             int yLoc = you.returnLocation()[0];
@@ -100,7 +100,7 @@ public class Runner {
                         if (enterBossRoom) {
                             board.getRoom(xLoc,yLoc).leaveRoom();
                             you.changeHealth((int) (you.health * 0.2));
-                            gameEnd = n.enterRoom(you);
+                            gameEnd = n.enterRoom(you); // The method will return a boolean on if the player dies or not, therefore ending the game.
                         }
                     }
                     else {
@@ -183,7 +183,7 @@ public class Runner {
                 in = new Scanner(System.in);
                 input = in.nextLine();
             }
-            if (you.returnDeathStatus()) {
+            if (you.returnDeathStatus()) { // if the player dies, end :(
                 gameEnd = true;
             }
         }

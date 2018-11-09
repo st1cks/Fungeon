@@ -20,7 +20,7 @@ public class NotAPlaceYouCanReallyGoTo extends Room {
         return map;
     }
     public boolean enterRoom(Profile z) {
-        System.out.println("felksejf");
+        System.out.println("felksejf"); // This class is a wall. If you somehow get inside the wall, it will print out this debug message.
         return false;
     }
 

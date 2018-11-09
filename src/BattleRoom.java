@@ -70,7 +70,7 @@ public class BattleRoom extends Room {
 
             Scanner in = new Scanner(System.in);
             String input = in.nextLine();
-            input.trim().toLowerCase();
+            input.toLowerCase().trim();
 
             String monsterInput = monster.makeChoice();
             if (monster.health == monster.maxHealth) {

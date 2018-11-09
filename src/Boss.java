@@ -69,7 +69,7 @@ public class Boss extends Profile {
             return "d";
         }
         else {
-            if (randomSpecial == 0) {
+            if (randomSpecial == 0) { // This is what separates a boss from a monster, its special attacks.
                 return "s1"; // Special 1: Permanently lower stats slightly
             }
             if (randomSpecial == 1) {
